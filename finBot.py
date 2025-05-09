@@ -40,6 +40,10 @@ class State(TypedDict):
     # Pennant pattern
     pennant_pattern_signal: str
     pennant_pattern_details: dict
+    # Flag pattern
+    flag_pattern_signal: str
+    flag_pattern_details: dict
+
     llm_opinion: str
     llm_prompt: str
     response: str
@@ -360,6 +364,62 @@ def pennant_pattern_detector_node(state):
     log_trace(state, "pennant_pattern_detector", f"{signal} | {details}")
     return state
 
+def flag_pattern_detector_node(state):
+    df = state.get("ohlcv")
+    if df is None or df.empty or len(df) < 50:
+        state["flag_pattern_signal"] = "❌ No flag pattern data"
+        state["flag_pattern_details"] = {}
+        return state
+
+    df_slice = df.tail(50).copy()
+    prices = df_slice["Close"].values
+    highs = df_slice["High"].values
+    lows = df_slice["Low"].values
+    idx = np.arange(len(df_slice))
+
+    # Estimate flagpole (prior trend)
+    pole_start = prices[0]
+    pole_end = prices[10]
+    pole_change = (pole_end - pole_start) / pole_start
+
+    # Fit linear regression to highs and lows
+    top_fit = np.polyfit(idx, highs, 1)
+    bot_fit = np.polyfit(idx, lows, 1)
+    top_slope = top_fit[0]
+    bot_slope = bot_fit[0]
+    close = prices[-1]
+    details = {}
+    signal = "⚠️ No flag pattern detected"
+
+    try:
+        # Bullish flag: strong up pole, downward parallel consolidation
+        if pole_change > 0.05 and top_slope < 0 and bot_slope < 0 and abs(top_slope - bot_slope) < 0.01:
+            signal = "📈 Bullish Flag → Continuation Up"
+            details = {
+                "pole_change": round(pole_change * 100, 2),
+                "top_slope": top_slope,
+                "bot_slope": bot_slope,
+                "close": close,
+                "type": "bullish"
+            }
+        # Bearish flag: strong down pole, upward parallel consolidation
+        elif pole_change < -0.05 and top_slope > 0 and bot_slope > 0 and abs(top_slope - bot_slope) < 0.01:
+            signal = "📉 Bearish Flag → Continuation Down"
+            details = {
+                "pole_change": round(pole_change * 100, 2),
+                "top_slope": top_slope,
+                "bot_slope": bot_slope,
+                "close": close,
+                "type": "bearish"
+            }
+    except Exception as e:
+        signal = f"⚠️ Flag detection error: {e}"
+
+    state["flag_pattern_signal"] = signal
+    state["flag_pattern_details"] = details
+    log_trace(state, "flag_pattern_detector", f"{signal} | {details}")
+    return state
+
 def llm_reason_node(state):
     df = state.get("ohlcv")
     if df is None or df.empty:
@@ -376,6 +436,7 @@ Triple: {state.get("triple_pattern_signal", "")}
 Head & Shoulders: {state.get("hs_pattern_signal", "")}
 Wedge: {state.get("wedge_pattern_signal", "")}
 Pennant: {state.get("pennant_pattern_signal", "")}
+Flag: {state.get("flag_pattern_signal", "")}
 """
 
     indicators_raw = df[["EMA_9", "EMA_21", "RSI", "MACD", "MACD_Signal", "VWAP"]].dropna().tail(50).to_dict(orient="list")
@@ -415,6 +476,7 @@ builder.add_node("triple_pattern_detector", triple_pattern_detector_node)
 builder.add_node("hs_pattern_detector", head_shoulders_pattern_node)
 builder.add_node("wedge_pattern_detector", wedge_pattern_detector_node)
 builder.add_node("pennant_pattern_detector", pennant_pattern_detector_node)
+builder.add_node("flag_pattern_detector", flag_pattern_detector_node)
 builder.add_node("llm_reason", llm_reason_node)
 
 builder.set_entry_point("api")
@@ -425,7 +487,8 @@ builder.add_edge("double_pattern_detector", "triple_pattern_detector")
 builder.add_edge("triple_pattern_detector", "hs_pattern_detector")
 builder.add_edge("hs_pattern_detector", "wedge_pattern_detector")
 builder.add_edge("wedge_pattern_detector", "pennant_pattern_detector")
-builder.add_edge("pennant_pattern_detector", "llm_reason")
+builder.add_edge("pennant_pattern_detector", "flag_pattern_detector")
+builder.add_edge("flag_pattern_detector", "llm_reason")
 builder.set_finish_point("llm_reason")
 
 graph = builder.compile(checkpointer=None)
