@@ -93,11 +93,6 @@ GEMINI_API_KEY=your_google_generative_ai_key
 
 LLM prompts are automatically:
 
-- Printed to console
-- Saved to `prompts/` folder as:
-  ```
-  llm_prompt_<SYMBOL>_<TIMESTAMP>.txt
-  ```
 - Appended to `llm_prompts_log.txt`
 
 ---
