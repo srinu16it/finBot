@@ -1,0 +1,9 @@
+langgraph
+google-generativeai
+yfinance
+pandas
+matplotlib
+scipy
+numpy
+dotenv
+langchain-groq
