@@ -25,8 +25,15 @@ class State(TypedDict):
     ohlcv: pd.DataFrame
     analysis: str
     indicator_summary: str
-    pattern_signal: str
-    pattern_details: dict
+    # Double pattern
+    double_pattern_signal: str
+    double_pattern_details: dict
+    # Triple pattern
+    triple_pattern_signal: str
+    triple_pattern_details: dict
+    # Head & Shoulders pattern
+    hs_pattern_signal: str
+    hs_pattern_details: dict
     llm_opinion: str
     llm_prompt: str
     response: str
@@ -196,6 +203,50 @@ def triple_pattern_detector_node(state):
     log_trace(state, "triple_pattern_detector", f"{signal} | {details}")
     return state
 
+def head_shoulders_pattern_node(state):
+    df = state.get("ohlcv")
+    if df is None or df.empty:
+        state["hs_pattern_signal"] = "❌ No pattern data"
+        state["hs_pattern_details"] = {}
+        return state
+
+    prices = df["Close"].values
+    df["local_max"] = df["Close"].iloc[argrelextrema(prices, np.greater_equal, order=3)[0]]
+    df["local_min"] = df["Close"].iloc[argrelextrema(prices, np.less_equal, order=3)[0]]
+
+    maxes = df.dropna(subset=["local_max"]).tail(7)
+    mins = df.dropna(subset=["local_min"]).tail(7)
+
+    signal = "⚠️ No head & shoulders pattern"
+    details = {}
+    close = df["Close"].iloc[-1]
+
+    try:
+        # Bearish Head & Shoulders: three peaks (L-H-R) with head higher, R ~ L, then break of neckline
+        if len(maxes) >= 3:
+            l, h, r = maxes["local_max"].values[-3:]
+            if h > l and h > r and abs(l - r)/h < 0.05:
+                neckline = df["Close"].iloc[maxes.index[-1]+1:].min()
+                if close < neckline:
+                    signal = "📉 Head & Shoulders → Bearish"
+                    details = {"left": l, "head": h, "right": r, "neckline": neckline, "close": close}
+
+        # Bullish Inverse Head & Shoulders: three troughs (L-H-R) with head lower, R ~ L, then break of neckline
+        if len(mins) >= 3:
+            l, h, r = mins["local_min"].values[-3:]
+            if h < l and h < r and abs(l - r)/h < 0.05:
+                neckline = df["Close"].iloc[mins.index[-1]+1:].max()
+                if close > neckline:
+                    signal = "📈 Inverse Head & Shoulders → Bullish"
+                    details = {"left": l, "head": h, "right": r, "neckline": neckline, "close": close}
+    except:
+        pass
+
+    state["hs_pattern_signal"] = signal
+    state["hs_pattern_details"] = details
+    log_trace(state, "hs_pattern_detector", f"{signal} | {details}")
+    return state
+
 def llm_reason_node(state):
     df = state.get("ohlcv")
     if df is None or df.empty:
@@ -209,6 +260,7 @@ def llm_reason_node(state):
     pattern_debug = f"""
 Double: {state.get("double_pattern_signal", "")}
 Triple: {state.get("triple_pattern_signal", "")}
+Head & Shoulders: {state.get("hs_pattern_signal", "")}
 """
 
     indicators_raw = df[["EMA_9", "EMA_21", "RSI", "MACD", "MACD_Signal", "VWAP"]].dropna().tail(50).to_dict(orient="list")
@@ -244,19 +296,16 @@ builder.add_node("analyze", analyze_node)
 builder.add_node("indicators", indicator_node)
 builder.add_node("double_pattern_detector", double_pattern_detector_node)
 builder.add_node("triple_pattern_detector", triple_pattern_detector_node)
+builder.add_node("hs_pattern_detector", head_shoulders_pattern_node)
 builder.add_node("llm_reason", llm_reason_node)
 
 builder.set_entry_point("api")
 builder.add_edge("api", "analyze")
 builder.add_edge("analyze", "indicators")
-
-# Chain the pattern detectors, not parallelize them:
 builder.add_edge("indicators", "double_pattern_detector")
 builder.add_edge("double_pattern_detector", "triple_pattern_detector")
-
-# Now only one incoming edge into llm_reason:
-builder.add_edge("triple_pattern_detector", "llm_reason")
-
+builder.add_edge("triple_pattern_detector", "hs_pattern_detector")
+builder.add_edge("hs_pattern_detector", "llm_reason")
 builder.set_finish_point("llm_reason")
 
 graph = builder.compile(checkpointer=None)
