@@ -34,6 +34,9 @@ class State(TypedDict):
     # Head & Shoulders pattern
     hs_pattern_signal: str
     hs_pattern_details: dict
+    # Wedge pattern
+    wedge_pattern_signal: str
+    wedge_pattern_details: dict
     llm_opinion: str
     llm_prompt: str
     response: str
@@ -247,6 +250,56 @@ def head_shoulders_pattern_node(state):
     log_trace(state, "hs_pattern_detector", f"{signal} | {details}")
     return state
 
+def wedge_pattern_detector_node(state):
+    df = state.get("ohlcv")
+    if df is None or df.empty or len(df) < 30:
+        state["wedge_pattern_signal"] = "❌ No wedge pattern data"
+        state["wedge_pattern_details"] = {}
+        return state
+
+    # Use the last 50 candles for wedge detection
+    df_slice = df.tail(50)
+    highs = df_slice["High"].values
+    lows = df_slice["Low"].values
+    idx = np.arange(len(df_slice))
+
+    # Linear regression: top and bottom lines
+    top_fit = np.polyfit(idx, highs, 1)   # slope, intercept
+    bot_fit = np.polyfit(idx, lows, 1)
+
+    top_slope = top_fit[0]
+    bot_slope = bot_fit[0]
+    slope_diff = abs(top_slope - bot_slope)
+
+    close = df_slice["Close"].iloc[-1]
+    signal = "⚠️ No clear wedge pattern"
+    details = {}
+
+    try:
+        if top_slope > 0 and bot_slope > 0 and bot_slope < top_slope and slope_diff > 0.01:
+            signal = "📉 Rising Wedge → Bearish"
+            details = {
+                "top_slope": top_slope,
+                "bot_slope": bot_slope,
+                "type": "rising",
+                "close": close
+            }
+        elif top_slope < 0 and bot_slope < 0 and bot_slope > top_slope and slope_diff > 0.01:
+            signal = "📈 Falling Wedge → Bullish"
+            details = {
+                "top_slope": top_slope,
+                "bot_slope": bot_slope,
+                "type": "falling",
+                "close": close
+            }
+    except Exception as e:
+        signal = f"⚠️ Wedge detection error: {e}"
+
+    state["wedge_pattern_signal"] = signal
+    state["wedge_pattern_details"] = details
+    log_trace(state, "wedge_pattern_detector", f"{signal} | {details}")
+    return state
+
 def llm_reason_node(state):
     df = state.get("ohlcv")
     if df is None or df.empty:
@@ -261,6 +314,7 @@ def llm_reason_node(state):
 Double: {state.get("double_pattern_signal", "")}
 Triple: {state.get("triple_pattern_signal", "")}
 Head & Shoulders: {state.get("hs_pattern_signal", "")}
+Wedge: {state.get("wedge_pattern_signal", "")}
 """
 
     indicators_raw = df[["EMA_9", "EMA_21", "RSI", "MACD", "MACD_Signal", "VWAP"]].dropna().tail(50).to_dict(orient="list")
@@ -281,7 +335,8 @@ Patterns:
 
 Make a judgment: BULLISH, BEARISH, or NEUTRAL, and explain why.
 """.strip()
-
+    with open("llm_prompts_log.txt", "a", encoding="utf-8") as f:
+        f.write(f"\n\n[{datetime.now().isoformat()}] SYMBOL: {state['symbol']}\n{prompt}\n")
     result = llm.generate_content(prompt).text.strip()
     state["llm_opinion"] = result
     state["llm_prompt"] = prompt
@@ -297,6 +352,7 @@ builder.add_node("indicators", indicator_node)
 builder.add_node("double_pattern_detector", double_pattern_detector_node)
 builder.add_node("triple_pattern_detector", triple_pattern_detector_node)
 builder.add_node("hs_pattern_detector", head_shoulders_pattern_node)
+builder.add_node("wedge_pattern_detector", wedge_pattern_detector_node)
 builder.add_node("llm_reason", llm_reason_node)
 
 builder.set_entry_point("api")
@@ -305,7 +361,8 @@ builder.add_edge("analyze", "indicators")
 builder.add_edge("indicators", "double_pattern_detector")
 builder.add_edge("double_pattern_detector", "triple_pattern_detector")
 builder.add_edge("triple_pattern_detector", "hs_pattern_detector")
-builder.add_edge("hs_pattern_detector", "llm_reason")
+builder.add_edge("hs_pattern_detector", "wedge_pattern_detector")
+builder.add_edge("wedge_pattern_detector", "llm_reason")
 builder.set_finish_point("llm_reason")
 
 graph = builder.compile(checkpointer=None)
