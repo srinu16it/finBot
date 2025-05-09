@@ -43,6 +43,9 @@ class State(TypedDict):
     # Flag pattern
     flag_pattern_signal: str
     flag_pattern_details: dict
+    # Triangle pattern
+    triangle_pattern_signal: str
+    triangle_pattern_details: dict
 
     llm_opinion: str
     llm_prompt: str
@@ -420,6 +423,62 @@ def flag_pattern_detector_node(state):
     log_trace(state, "flag_pattern_detector", f"{signal} | {details}")
     return state
 
+def triangle_pattern_detector_node(state):
+    df = state.get("ohlcv")
+    if df is None or df.empty or len(df) < 50:
+        state["triangle_pattern_signal"] = "❌ No triangle pattern data"
+        state["triangle_pattern_details"] = {}
+        return state
+
+    df_slice = df.tail(50).copy()
+    highs = df_slice["High"].values
+    lows = df_slice["Low"].values
+    idx = np.arange(len(df_slice))
+
+    # Fit trendlines
+    top_fit = np.polyfit(idx, highs, 1)
+    bot_fit = np.polyfit(idx, lows, 1)
+    top_slope = top_fit[0]
+    bot_slope = bot_fit[0]
+
+    close = df_slice["Close"].iloc[-1]
+    details = {}
+    signal = "⚠️ No clear triangle pattern"
+
+    try:
+        if abs(top_slope) < 0.005 and bot_slope > 0.01:
+            signal = "🔺 Ascending Triangle → Bullish"
+            details = {
+                "top_slope": top_slope,
+                "bot_slope": bot_slope,
+                "type": "ascending",
+                "close": close,
+            }
+        elif abs(bot_slope) < 0.005 and top_slope < -0.01:
+            signal = "🔻 Descending Triangle → Bearish"
+            details = {
+                "top_slope": top_slope,
+                "bot_slope": bot_slope,
+                "type": "descending",
+                "close": close,
+            }
+        elif top_slope < 0 and bot_slope > 0 and abs(top_slope - bot_slope) > 0.01:
+            signal = "🔼 Symmetrical Triangle → Neutral (Watch Breakout)"
+            details = {
+                "top_slope": top_slope,
+                "bot_slope": bot_slope,
+                "type": "symmetrical",
+                "close": close,
+            }
+    except Exception as e:
+        signal = f"⚠️ Triangle detection error: {e}"
+
+    state["triangle_pattern_signal"] = signal
+    state["triangle_pattern_details"] = details
+    log_trace(state, "triangle_pattern_detector", f"{signal} | {details}")
+    return state
+
+
 def llm_reason_node(state):
     df = state.get("ohlcv")
     if df is None or df.empty:
@@ -437,6 +496,7 @@ Head & Shoulders: {state.get("hs_pattern_signal", "")}
 Wedge: {state.get("wedge_pattern_signal", "")}
 Pennant: {state.get("pennant_pattern_signal", "")}
 Flag: {state.get("flag_pattern_signal", "")}
+Triangle: {state.get("triangle_pattern_signal", "")}
 """
 
     indicators_raw = df[["EMA_9", "EMA_21", "RSI", "MACD", "MACD_Signal", "VWAP"]].dropna().tail(50).to_dict(orient="list")
@@ -477,6 +537,7 @@ builder.add_node("hs_pattern_detector", head_shoulders_pattern_node)
 builder.add_node("wedge_pattern_detector", wedge_pattern_detector_node)
 builder.add_node("pennant_pattern_detector", pennant_pattern_detector_node)
 builder.add_node("flag_pattern_detector", flag_pattern_detector_node)
+builder.add_node("triangle_pattern_detector", triangle_pattern_detector_node)
 builder.add_node("llm_reason", llm_reason_node)
 
 builder.set_entry_point("api")
@@ -488,7 +549,8 @@ builder.add_edge("triple_pattern_detector", "hs_pattern_detector")
 builder.add_edge("hs_pattern_detector", "wedge_pattern_detector")
 builder.add_edge("wedge_pattern_detector", "pennant_pattern_detector")
 builder.add_edge("pennant_pattern_detector", "flag_pattern_detector")
-builder.add_edge("flag_pattern_detector", "llm_reason")
+builder.add_edge("flag_pattern_detector", "triangle_pattern_detector")
+builder.add_edge("triangle_pattern_detector", "llm_reason")
 builder.set_finish_point("llm_reason")
 
 graph = builder.compile(checkpointer=None)
