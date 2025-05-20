@@ -1,6 +1,6 @@
 # LangGraph Stock Pattern Analyzer
 
-A modular, AI-enhanced stock analysis tool built with Python, LangGraph, and Gemini 1.5. It fetches live stock data, detects technical chart patterns, computes indicators, and uses an LLM to summarize market outlook in natural language.
+A modular, AI-enhanced stock analysis tool built with Python, LangGraph, and OpenAI GPT-4. It fetches live stock data, detects technical chart patterns, computes indicators, and uses an LLM to summarize market outlook in natural language.
 
 ---
 
@@ -16,7 +16,7 @@ A modular, AI-enhanced stock analysis tool built with Python, LangGraph, and Gem
   - Bullish / Bearish Pennants
   - Bullish / Bearish Flags
   - Ascending / Descending / Symmetrical Triangles
-- ✅ Gemini 1.5 LLM summary with reasoning
+- ✅ OpenAI GPT-4 LLM summary with reasoning
 - ✅ LangGraph-powered execution with memory and trace
 - ✅ Transparent LLM prompt logging to files
 
@@ -34,12 +34,12 @@ Extract Symbol
    → Analysis Summary
    → Indicator Calculation
    → Pattern Detection (7 types)
-   → LLM Reasoning (Gemini 1.5)
+   → LLM Reasoning (OpenAI GPT-4)
    ↓
 Final Report (Market Direction + Trace)
 ```
 
-All nodes operate within a shared `State` dictionary using LangGraph’s `StateGraph` abstraction. LangGraph provides:
+All nodes operate within a shared `State` dictionary using LangGraph's `StateGraph` abstraction. LangGraph provides:
 
 - Type-safe flow definitions using `TypedDict`
 - Visualizable graph structure
@@ -70,7 +70,7 @@ pip install -r requirements.txt
 Create a `.env` file:
 
 ```env
-GEMINI_API_KEY=your_google_generative_ai_key
+OPENAI_API_KEY=your_openai_api_key
 ```
 
 ---
@@ -119,7 +119,7 @@ BULLISH — Indicators and triangle support continuation.
 ## 📘 References
 
 - Yahoo Finance API via `yfinance`
-- Google Gemini 1.5 API (via `google.generativeai`)
+- OpenAI GPT-4 API (via `openai`)
 - LangGraph for orchestrated memory-safe reasoning
 - Chart pattern logic based on Investopedia, IG Academy, and trading guides
 
