@@ -375,14 +375,17 @@ class AlphaVantageProvider:
         
         # Check cache first
         if use_cache:
-            cached_data = self.cache_manager.get(
-                self.provider_name,
-                symbol,
-                params
-            )
-            if cached_data:
-                logger.info(f"Cache hit for {symbol} quote")
-                return cached_data
+            try:
+                cached_data = self.cache_manager.get(
+                    self.provider_name,
+                    symbol,
+                    params
+                )
+                if cached_data:
+                    logger.info(f"Cache hit for {symbol} quote")
+                    return cached_data
+            except Exception as e:
+                logger.warning(f"Cache error for {symbol} quote, continuing without cache: {str(e)}")
         
         # Fetch from API
         try:
@@ -640,14 +643,30 @@ class AlphaVantageProvider:
             
             # Cache the data
             if use_cache and not hist_4h.empty:
-                cache_data = hist_4h.to_dict(orient='records')
-                self.cache_manager.set(
-                    self.provider_name,
-                    symbol,
-                    cache_data,
-                    params=params,
-                    ttl=1800  # 30 minutes TTL for 4H data
-                )
+                try:
+                    # Convert datetime index to string format before caching
+                    cache_df = hist_4h.copy()
+                    
+                    # Handle both index and Date column
+                    if 'Date' in cache_df.columns:
+                        # Convert Date column to string if it's datetime
+                        if pd.api.types.is_datetime64_any_dtype(cache_df['Date']):
+                            cache_df['Date'] = cache_df['Date'].dt.strftime('%Y-%m-%d %H:%M:%S')
+                    elif isinstance(cache_df.index, pd.DatetimeIndex):
+                        # Convert index to string and reset
+                        cache_df.index = cache_df.index.strftime('%Y-%m-%d %H:%M:%S')
+                        cache_df = cache_df.reset_index().rename(columns={'index': 'Date'})
+                    
+                    cache_data = cache_df.to_dict(orient='records')
+                    self.cache_manager.set(
+                        self.provider_name,
+                        symbol,
+                        cache_data,
+                        params=params,
+                        ttl=1800  # 30 minutes TTL for 4H data
+                    )
+                except Exception as e:
+                    logger.warning(f"Failed to cache 4-hour data for {symbol}: {str(e)}")
             
             return hist_4h
             

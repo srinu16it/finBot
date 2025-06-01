@@ -32,7 +32,7 @@ class YahooProvider:
     # Rate limiting for Yahoo Finance
     _last_request_time = 0
     _rate_limit_lock = Lock()
-    MIN_REQUEST_INTERVAL = 1.0  # Minimum seconds between requests
+    MIN_REQUEST_INTERVAL = 2.0  # Minimum seconds between requests
     
     def __init__(self, cache_manager: Optional[CacheManager] = None):
         """

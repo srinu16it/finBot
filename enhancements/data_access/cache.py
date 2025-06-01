@@ -132,7 +132,7 @@ class CacheManager:
         # Create cache table if not exists
         self.conn.execute("""
             CREATE TABLE IF NOT EXISTS cache (
-                id INTEGER PRIMARY KEY,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 provider VARCHAR NOT NULL,
                 symbol VARCHAR NOT NULL,
                 params_hash VARCHAR NOT NULL,
