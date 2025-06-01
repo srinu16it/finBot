@@ -823,7 +823,7 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
                 logger.info(f"Got real-time IV: {iv:.1f}%")
                 
                 # Validate IV - reject unrealistic values
-                if iv > 150:
+                if iv > 200:
                     logger.warning(f"Suspicious IV from AlphaVantage: {iv:.1f}% - using Yahoo fallback")
                     iv = None  # Force fallback to Yahoo
                     iv_data = None

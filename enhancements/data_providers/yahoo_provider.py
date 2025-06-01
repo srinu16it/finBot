@@ -11,6 +11,7 @@ from typing import Optional, Dict, Any
 from datetime import datetime
 import logging
 import time
+from threading import Lock
 
 from enhancements.data_access.cache import CacheManager
 
@@ -28,6 +29,11 @@ class YahooProvider:
     - Extended data retrieval options
     """
     
+    # Rate limiting for Yahoo Finance
+    _last_request_time = 0
+    _rate_limit_lock = Lock()
+    MIN_REQUEST_INTERVAL = 1.0  # Minimum seconds between requests
+    
     def __init__(self, cache_manager: Optional[CacheManager] = None):
         """
         Initialize the Yahoo provider.
@@ -38,6 +44,19 @@ class YahooProvider:
         """
         self.cache_manager = cache_manager or CacheManager()
         self.provider_name = "yahoo_finance"
+    
+    def _rate_limit(self):
+        """Enforce rate limiting to avoid 429 errors."""
+        with YahooProvider._rate_limit_lock:
+            current_time = time.time()
+            time_since_last_request = current_time - YahooProvider._last_request_time
+            
+            if time_since_last_request < self.MIN_REQUEST_INTERVAL:
+                sleep_time = self.MIN_REQUEST_INTERVAL - time_since_last_request
+                logger.debug(f"Rate limiting: sleeping for {sleep_time:.2f}s")
+                time.sleep(sleep_time)
+            
+            YahooProvider._last_request_time = time.time()
     
     def get_ohlcv(self, symbol: str, period: str = "1mo", 
                   interval: str = "1d", use_cache: bool = True) -> Optional[pd.DataFrame]:
@@ -64,6 +83,7 @@ class YahooProvider:
         
         # Fetch from API
         try:
+            self._rate_limit()
             logger.info(f"Fetching {symbol} OHLCV data from Yahoo Finance")
             
             # Add retry logic with exponential backoff
@@ -143,6 +163,7 @@ class YahooProvider:
         
         # Fetch from API
         try:
+            self._rate_limit()
             logger.info(f"Fetching {symbol} info from Yahoo Finance")
             ticker = yf.Ticker(symbol)
             info = ticker.info
@@ -194,6 +215,7 @@ class YahooProvider:
         
         # Fetch from API
         try:
+            self._rate_limit()
             logger.info(f"Fetching {symbol} options from Yahoo Finance")
             ticker = yf.Ticker(symbol)
             
@@ -253,6 +275,7 @@ class YahooProvider:
                 return cached_data
                 
         try:
+            self._rate_limit()
             logger.info(f"Fetching news for {symbol} from Yahoo Finance")
             ticker = yf.Ticker(symbol)
             
@@ -415,6 +438,7 @@ class YahooProvider:
         logger.info(f"Fetching 1-hour data for {symbol} to create 4-hour bars")
         
         try:
+            self._rate_limit()
             ticker = yf.Ticker(symbol)
             # Get 60 days of 1-hour data
             hist_1h = ticker.history(period=period, interval="1h")

@@ -267,16 +267,22 @@ class AlphaVantageProvider:
         
         # Cache the data
         if use_cache:
-            cache_data = df.reset_index().rename(columns={'index': 'Date'}).to_dict(orient='records')
-            # Shorter TTL for intraday data
-            ttl = 300 if interval in ['1min', '5min'] else 600
-            self.cache_manager.set(
-                self.provider_name,
-                symbol,
-                cache_data,
-                params=params,
-                ttl=ttl
-            )
+            try:
+                # Convert datetime index to string format before caching
+                df_cache = df.copy()
+                df_cache.index = df_cache.index.strftime('%Y-%m-%d %H:%M:%S')
+                cache_data = df_cache.reset_index().rename(columns={'index': 'Date'}).to_dict(orient='records')
+                # Shorter TTL for intraday data
+                ttl = 300 if interval in ['1min', '5min'] else 600
+                self.cache_manager.set(
+                    self.provider_name,
+                    symbol,
+                    cache_data,
+                    params=params,
+                    ttl=ttl
+                )
+            except Exception as e:
+                logger.warning(f"Failed to cache intraday data for {symbol}: {str(e)}")
         
         return df
     
