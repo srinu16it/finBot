@@ -163,8 +163,8 @@ class CacheManager:
         # Initialize stats if not exists
         if self.conn.execute("SELECT COUNT(*) FROM cache_stats").fetchone()[0] == 0:
             self.conn.execute("""
-                INSERT INTO cache_stats (total_hits, total_misses, last_cleanup)
-                VALUES (0, 0, CURRENT_TIMESTAMP)
+                INSERT INTO cache_stats (id, total_hits, total_misses, last_cleanup)
+                VALUES (1, 0, 0, CURRENT_TIMESTAMP)
             """)
     
     def _generate_cache_key(self, provider: str, symbol: str, params: Optional[Dict] = None) -> str:
