@@ -488,4 +488,334 @@ class AlphaVantageProvider:
                 ttl=300  # 5 minutes for options
             )
         
-        return result 
+        return result
+    
+    def get_options_chain(self, symbol: str, require_greeks: bool = True) -> Optional[Dict]:
+        """
+        Get real-time options chain data with Greeks and IV.
+        
+        Args:
+            symbol: Stock symbol
+            require_greeks: Include Greeks and IV data
+            
+        Returns:
+            Options chain data or None
+        """
+        params = {
+            "function": "REALTIME_OPTIONS",
+            "symbol": symbol,
+            "require_greeks": str(require_greeks).lower(),
+            "apikey": self.api_key  # Use regular API key - it works!
+        }
+        
+        try:
+            logger.info(f"Fetching options chain for {symbol}")
+            data = self._make_request(params)
+            
+            # Log the raw response for debugging
+            if data:
+                logger.debug(f"API Response keys: {list(data.keys())}")
+                if 'data' in data:  # Changed from 'options' to 'data'
+                    logger.info(f"Found {len(data['data'])} options for {symbol}")
+                    return self._process_options_data(data)
+                else:
+                    # Log what we actually got
+                    logger.warning(f"No 'data' key in response. Keys found: {list(data.keys())}")
+                    # Check for error messages
+                    if 'Error Message' in data:
+                        logger.error(f"API Error: {data['Error Message']}")
+                    elif 'Note' in data:
+                        logger.warning(f"API Note: {data['Note']}")
+                    elif 'Information' in data:
+                        logger.info(f"API Info: {data['Information']}")
+            else:
+                logger.warning(f"No data returned from API for {symbol}")
+                
+            return None
+                
+        except Exception as e:
+            logger.error(f"Error fetching options chain: {e}")
+            return None
+    
+    def get_4hour_data(self, symbol: str, outputsize: str = "full", 
+                       use_cache: bool = True) -> Optional[pd.DataFrame]:
+        """
+        Get 4-hour OHLCV data for a symbol.
+        
+        AlphaVantage doesn't directly support 4h interval, so we'll use 60min 
+        data and resample to 4h, similar to Yahoo approach.
+        
+        Args:
+            symbol: Stock symbol
+            outputsize: 'compact' or 'full' (full recommended for 2 months of data)
+            use_cache: Whether to use cached data if available
+            
+        Returns:
+            DataFrame with 4-hour OHLCV data or None if error
+        """
+        # First try to get from cache
+        params = {"outputsize": outputsize, "interval": "4h"}
+        
+        if use_cache:
+            cached_data = self.cache_manager.get(self.provider_name, symbol, params)
+            if cached_data:
+                logger.info(f"Cache hit for {symbol} 4-hour data")
+                df = pd.DataFrame(cached_data)
+                if 'Date' in df.columns:
+                    df['Date'] = pd.to_datetime(df['Date'])
+                    df = df.set_index('Date')
+                return df
+        
+        # Get 60-minute data and resample
+        logger.info(f"Fetching 60-minute data for {symbol} to create 4-hour bars")
+        
+        try:
+            # Get 60-minute intraday data
+            hist_60min = self.get_intraday(symbol, interval="60min", 
+                                           outputsize=outputsize, use_cache=use_cache)
+            
+            if hist_60min is None or hist_60min.empty:
+                logger.warning(f"No 60-minute data returned for {symbol}")
+                return None
+            
+            # Resample to 4-hour bars
+            # AlphaVantage returns EST/EDT times, so we align with market hours
+            # Market hours: 9:30 AM - 4:00 PM ET
+            # Create 4-hour bars without offset first
+            hist_4h = hist_60min.resample('4h').agg({
+                'Open': 'first',
+                'High': 'max',
+                'Low': 'min',
+                'Close': 'last',
+                'Volume': 'sum'
+            }).dropna()
+            
+            # Filter to only include bars during market hours (more flexible)
+            # Keep bars between 4 AM and 8 PM ET to account for pre/post market
+            hist_4h['hour'] = hist_4h.index.hour
+            hist_4h = hist_4h[(hist_4h['hour'] >= 4) & (hist_4h['hour'] <= 20)]
+            
+            # Further filter to get approximately 2 bars per day
+            # Keep bars starting around 8-10 AM and 12-2 PM
+            hist_4h = hist_4h[
+                ((hist_4h['hour'] >= 8) & (hist_4h['hour'] <= 10)) |
+                ((hist_4h['hour'] >= 12) & (hist_4h['hour'] <= 14))
+            ]
+            hist_4h = hist_4h.drop('hour', axis=1)
+            
+            # If still empty, use all 4-hour bars without filtering
+            if hist_4h.empty:
+                logger.warning("Hour filtering resulted in empty DataFrame, using all 4-hour bars")
+                hist_4h = hist_60min.resample('4h').agg({
+                    'Open': 'first',
+                    'High': 'max',
+                    'Low': 'min',
+                    'Close': 'last',
+                    'Volume': 'sum'
+                }).dropna()
+            
+            # Reset index to make date a column
+            hist_4h.reset_index(inplace=True)
+            hist_4h.rename(columns={'index': 'Date'}, inplace=True)
+            
+            # Cache the data
+            if use_cache and not hist_4h.empty:
+                cache_data = hist_4h.to_dict(orient='records')
+                self.cache_manager.set(
+                    self.provider_name,
+                    symbol,
+                    cache_data,
+                    params=params,
+                    ttl=1800  # 30 minutes TTL for 4H data
+                )
+            
+            return hist_4h
+            
+        except Exception as e:
+            logger.error(f"Error creating 4-hour data for {symbol}: {str(e)}")
+            return None
+    
+    def get_news_sentiment(self, symbol: str, time_from: Optional[str] = None) -> Optional[Dict]:
+        """
+        Get news sentiment analysis for a symbol.
+        
+        Args:
+            symbol: Stock symbol
+            time_from: Start time for news (format: YYYYMMDDTHHMM)
+            
+        Returns:
+            News sentiment data or None
+        """
+        # Use specific realtime API key if available for news sentiment
+        realtime_api_key = os.getenv("ALPHA_VANTAGE_REALTIME_API_KEY") or self.api_key
+        
+        params = {
+            "function": "NEWS_SENTIMENT",
+            "tickers": symbol,
+            "apikey": realtime_api_key
+        }
+        
+        if time_from:
+            params["time_from"] = time_from
+            
+        try:
+            logger.info(f"Fetching news sentiment for {symbol}")
+            data = self._make_request(params)
+            
+            if data and 'feed' in data:
+                # Calculate aggregate sentiment, pass the symbol
+                return self._process_news_sentiment(data, symbol)
+            else:
+                logger.warning(f"No news data found for {symbol}")
+                return None
+                
+        except Exception as e:
+            logger.error(f"Error fetching news sentiment: {e}")
+            return None
+    
+    def _process_options_data(self, data: Dict) -> Dict:
+        """Process raw options data into structured format."""
+        # The API returns data in 'data' field, not 'options'
+        options = data.get('data', [])
+        
+        if not options:
+            return None
+        
+        # Get underlying price from first option's mark or last price
+        # Note: AlphaVantage doesn't provide underlying price directly
+        # We'll estimate from ATM options
+        current_price = None
+        
+        # Separate calls and puts
+        calls = [opt for opt in options if opt.get('type') == 'call']
+        puts = [opt for opt in options if opt.get('type') == 'put']
+        
+        # Estimate current price from ATM options
+        if calls:
+            # Find the call with highest open interest near the money
+            sorted_calls = sorted(calls, key=lambda x: int(x.get('open_interest', 0)), reverse=True)
+            for call in sorted_calls[:10]:  # Check top 10 by OI
+                if float(call.get('mark', 0)) > 0:
+                    strike = float(call.get('strike', 0))
+                    mark = float(call.get('mark', 0))
+                    # Rough estimate: current price = strike + call premium for near ATM
+                    if not current_price and mark < strike * 0.1:  # Premium less than 10% of strike
+                        current_price = strike + mark
+                        break
+        
+        if not current_price and options:
+            # Fallback: use the strike with most volume/OI
+            current_price = float(sorted(options, key=lambda x: int(x.get('open_interest', 0)), reverse=True)[0].get('strike', 100))
+        
+        # Find ATM IV
+        atm_call_iv = None
+        atm_put_iv = None
+        
+        # Find closest strikes to current price
+        if current_price:
+            for call in calls:
+                strike = float(call.get('strike', 0))
+                if abs(strike - current_price) / current_price < 0.05:  # Within 5% of current price
+                    iv_value = call.get('implied_volatility')
+                    if iv_value:
+                        # AlphaVantage returns IV in inconsistent format:
+                        # - Values < 1 are decimals (0.67 = 67%)
+                        # - Values > 5 are likely errors or already percentages
+                        # Most realistic IVs are between 10% and 200%
+                        iv_float = float(iv_value)
+                        if iv_float < 1.0:
+                            # This is a decimal representing percentage
+                            atm_call_iv = iv_float * 100
+                        elif iv_float > 5.0:
+                            # This is likely an error or already percentage
+                            # Don't multiply, just use as is (but it's probably wrong)
+                            atm_call_iv = iv_float
+                        else:
+                            # Between 1 and 5, could be 1.5 = 150%
+                            atm_call_iv = iv_float * 100
+                        break
+                        
+            for put in puts:
+                strike = float(put.get('strike', 0))
+                if abs(strike - current_price) / current_price < 0.05:  # Within 5% of current price
+                    iv_value = put.get('implied_volatility')
+                    if iv_value:
+                        # AlphaVantage returns IV in inconsistent format:
+                        # - Values < 1 are decimals (0.67 = 67%)
+                        # - Values > 5 are likely errors or already percentages
+                        # Most realistic IVs are between 10% and 200%
+                        iv_float = float(iv_value)
+                        if iv_float < 1.0:
+                            # This is a decimal representing percentage
+                            atm_put_iv = iv_float * 100
+                        elif iv_float > 5.0:
+                            # This is likely an error or already percentage
+                            # Don't multiply, just use as is (but it's probably wrong)
+                            atm_put_iv = iv_float
+                        else:
+                            # Between 1 and 5, could be 1.5 = 150%
+                            atm_put_iv = iv_float * 100
+                        break
+        
+        # Calculate average IV and skew
+        avg_iv = None
+        if atm_call_iv and atm_put_iv:
+            avg_iv = (atm_call_iv + atm_put_iv) / 2
+            iv_skew = atm_put_iv - atm_call_iv
+        elif atm_call_iv:
+            avg_iv = atm_call_iv
+            iv_skew = 0
+        elif atm_put_iv:
+            avg_iv = atm_put_iv
+            iv_skew = 0
+        else:
+            iv_skew = 0
+        
+        return {
+            'underlying_price': current_price,
+            'atm_iv': avg_iv,
+            'call_iv': atm_call_iv,
+            'put_iv': atm_put_iv,
+            'iv_skew': iv_skew,
+            'options_count': len(options)
+        }
+    
+    def _process_news_sentiment(self, data: Dict, symbol: str) -> Dict:
+        """Process news sentiment into aggregate score."""
+        feed = data.get('feed', [])
+        
+        if not feed:
+            return {'sentiment_score': 0, 'relevance_score': 0, 'articles': 0}
+        
+        total_sentiment = 0
+        total_relevance = 0
+        count = 0
+        
+        recent_articles = []
+        
+        for article in feed[:10]:  # Last 10 articles
+            ticker_sentiment = article.get('ticker_sentiment', [])
+            for ts in ticker_sentiment:
+                if ts.get('ticker') == symbol:
+                    sentiment = float(ts.get('ticker_sentiment_score', 0))
+                    relevance = float(ts.get('relevance_score', 0))
+                    
+                    total_sentiment += sentiment * relevance
+                    total_relevance += relevance
+                    count += 1
+                    
+                    recent_articles.append({
+                        'title': article.get('title'),
+                        'sentiment': sentiment,
+                        'relevance': relevance,
+                        'time': article.get('time_published')
+                    })
+        
+        avg_sentiment = total_sentiment / total_relevance if total_relevance > 0 else 0
+        
+        return {
+            'sentiment_score': avg_sentiment,
+            'relevance_score': total_relevance / count if count > 0 else 0,
+            'articles_analyzed': count,
+            'recent_articles': recent_articles[:5]
+        } 

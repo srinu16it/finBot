@@ -49,6 +49,7 @@ from enhancements.data_providers.yahoo_provider import YahooProvider
 from enhancements.data_providers.alpha_provider import AlphaVantageProvider
 from enhancements.data_access.cache import CacheManager
 from enhancements.patterns.confidence import PatternConfidenceEngine, update_pattern_outcome
+from enhancements.patterns.candlestick_patterns import CandlestickPatternDetector
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -639,6 +640,7 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
     cache_manager = CacheManager()
     pattern_detector = EnhancedPatternDetector(cache_manager)
     options_engine = OptionsRecommendationEngine()
+    candlestick_detector = CandlestickPatternDetector()
     
     # Fetch data - always get 6 months for proper weekly analysis
     if use_alphavantage and "ALPHAVANTAGE_API_KEY" in os.environ:
@@ -763,7 +765,7 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
     pattern_df['ATR'] = tr.rolling(window=14).mean()
     
     # ADX calculation - import from advanced analyzer
-    from advanced_options_analyzer import AdvancedOptionsAnalyzer
+    from enhancements.examples.advanced_options_analyzer import AdvancedOptionsAnalyzer
     analyzer = AdvancedOptionsAnalyzer(cache_manager)
     pattern_df['ADX'] = analyzer.calculate_adx(pattern_df)
     
@@ -807,10 +809,95 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
     
     # Get IV from options
     iv = None
+    iv_data = None
+    news_sentiment = None
+    four_hour_timing = None  # New: 4-hour timing analysis
+    
     try:
-        iv = analyzer.get_iv_from_options(symbol)
+        # Try to get real-time options data with IV
+        if use_alphavantage and "ALPHAVANTAGE_API_KEY" in os.environ:
+            options_data = provider.get_options_chain(symbol)
+            if options_data and 'atm_iv' in options_data:
+                iv = options_data['atm_iv']
+                iv_data = options_data
+                logger.info(f"Got real-time IV: {iv:.1f}%")
+                
+                # Validate IV - reject unrealistic values
+                if iv > 150:
+                    logger.warning(f"Suspicious IV from AlphaVantage: {iv:.1f}% - using Yahoo fallback")
+                    iv = None  # Force fallback to Yahoo
+                    iv_data = None
+            
+            # Get news sentiment
+            news = provider.get_news_sentiment(symbol)
+            if news:
+                news_sentiment = news
+                logger.info(f"News sentiment score: {news['sentiment_score']:.2f}")
+        
+        # If no news from AlphaVantage, try Yahoo Finance
+        if not news_sentiment:
+            logger.info("Trying Yahoo Finance for news sentiment")
+            yahoo_provider = YahooProvider(cache_manager)
+            yahoo_news = yahoo_provider.get_news_sentiment(symbol)
+            if yahoo_news:
+                news_sentiment = yahoo_news
+                logger.info(f"Yahoo news sentiment score: {yahoo_news['sentiment_score']:.2f}")
+        
+        # Fallback to previous IV calculation if needed
+        if not iv:
+            iv = analyzer.get_iv_from_options(symbol)
+            
+        # NEW: Get 4-hour chart data for timing
+        logger.info("Fetching 4-hour chart data for entry timing")
+        
+        # Use the same provider as main analysis for consistency
+        if use_alphavantage and "ALPHAVANTAGE_API_KEY" in os.environ and hasattr(provider, 'get_4hour_data'):
+            logger.info("Using AlphaVantage for 4-hour data")
+            df_4h = provider.get_4hour_data(symbol, outputsize="full")
+        else:
+            # Fallback to Yahoo for 4-hour data
+            logger.info("Using Yahoo Finance for 4-hour data")
+            if not 'yahoo_provider' in locals():
+                yahoo_provider = YahooProvider(cache_manager)
+            df_4h = yahoo_provider.get_4hour_data(symbol, period="2mo")
+        
+        if df_4h is not None and not df_4h.empty:
+            # Convert Date column to index if needed
+            if 'Date' in df_4h.columns:
+                df_4h.set_index('Date', inplace=True)
+            
+            # Analyze 4-hour timing
+            from enhancements.patterns.entry_timing_4h import FourHourEntryTiming
+            timing_analyzer = FourHourEntryTiming()
+            
+            # Create daily signal summary for 4H analysis
+            # Initialize pattern_bias before using it
+            if patterns:
+                bullish_patterns = sum(1 for p in patterns if p.get("type") == "bullish")
+                bearish_patterns = sum(1 for p in patterns if p.get("type") == "bearish")
+                
+                if bullish_patterns > bearish_patterns:
+                    pattern_bias = "bullish"
+                elif bearish_patterns > bullish_patterns:
+                    pattern_bias = "bearish"
+                else:
+                    pattern_bias = "neutral"
+            else:
+                pattern_bias = "neutral"
+            
+            daily_signal = {
+                'market_outlook': pattern_bias,
+                'current_price': current_price,
+                'patterns': patterns[:1] if patterns else []  # Primary pattern
+            }
+            
+            four_hour_timing = timing_analyzer.analyze_4h_entry(df_4h, daily_signal)
+            logger.info(f"4H timing: {four_hour_timing.get('timing', 'unavailable')}")
+        else:
+            logger.warning("Could not fetch 4-hour data for timing analysis")
+            
     except Exception as e:
-        logger.warning(f"Failed to get IV: {e}")
+        logger.warning(f"Failed to get enhanced data: {e}")
     
     # Advanced entry conditions check
     latest_daily = pattern_df.iloc[-1]
@@ -832,8 +919,9 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
         else:
             pattern_bias = "neutral"
     else:
-        # Fallback to price-based outlook if no patterns detected
-        pattern_bias = "bullish" if pattern_df["Close"].iloc[-1] > pattern_df["Close"].iloc[-20] else "bearish"
+        # No patterns detected - should be neutral, not directional
+        pattern_bias = "neutral"
+        logger.info("No patterns detected - setting bias to neutral")
     
     # Check weekly trend condition
     weekly_trend_condition_met = False
@@ -845,6 +933,41 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
     
     # All entry conditions
     entry_conditions_met = adx_condition_met and weekly_trend_condition_met and pattern_bias != "neutral"
+    
+    # Check news sentiment if available
+    news_condition_met = True  # Default to true if no news data
+    if news_sentiment and news_sentiment.get('sentiment_score') is not None:
+        sentiment_score = news_sentiment['sentiment_score']
+        if sentiment_score < -0.5:
+            news_condition_met = False
+            logger.warning(f"Negative news sentiment: {sentiment_score:.2f}")
+        elif sentiment_score > 0.3:
+            logger.info(f"Positive news sentiment: {sentiment_score:.2f}")
+    
+    # Update entry conditions with news
+    entry_conditions_met = entry_conditions_met and news_condition_met
+    
+    # Check candlestick timing if other conditions are met
+    candlestick_timing = None
+    if entry_conditions_met and patterns:
+        # Get the primary pattern for timing
+        primary_pattern = patterns[0] if patterns else None
+        if primary_pattern:
+            candlestick_timing = candlestick_detector.get_entry_timing(
+                pattern_df.tail(20), 
+                primary_pattern['pattern']
+            )
+    
+    # Check for exit warnings if in a position
+    exit_warnings = []
+    if pattern_bias != "neutral":
+        position_type = "long" if pattern_bias == "bullish" else "short"
+        exit_patterns = candlestick_detector.detect_exit_warnings(
+            pattern_df.tail(10), 
+            position_type
+        )
+        if exit_patterns:
+            exit_warnings = exit_patterns
     
     # Generate options recommendations with advanced filters
     if entry_conditions_met:
@@ -902,10 +1025,23 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
                 })
     else:
         # No trade recommendations
+        missing_conditions = []
+        if not adx_condition_met:
+            missing_conditions.append("ADX < 20")
+        if not weekly_trend_condition_met:
+            missing_conditions.append("Weekly trend not aligned")
+        if pattern_bias == "neutral":
+            if not patterns:
+                missing_conditions.append("No patterns detected")
+            else:
+                missing_conditions.append("No clear pattern direction")
+        if not news_condition_met:
+            missing_conditions.append("Negative news sentiment")
+            
         recommendations = [{
             'strategy_type': 'NO TRADE',
             'description': 'Entry conditions not met',
-            'detailed_explanation': f'Missing: {"ADX < 20" if not adx_condition_met else ""} {"Weekly trend not aligned" if not weekly_trend_condition_met else ""} {"No clear pattern bias" if pattern_bias == "neutral" else ""}',
+            'detailed_explanation': f'Missing: {", ".join(missing_conditions)}',
             'risk_level': 'none',
             'complexity': 'none',
             'market_outlook': pattern_bias,
@@ -929,7 +1065,8 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
             "ATR": float(latest_daily['ATR']) if not pd.isna(latest_daily['ATR']) else 0.0,
             "HV_60": float(latest_daily['HV_60']) if not pd.isna(latest_daily['HV_60']) else 0.0,
             "HV_30": float(latest_daily['HV_30']) if not pd.isna(latest_daily['HV_30']) else 0.0,
-            "IV": float(iv) if iv else None
+            "IV": float(iv) if iv else None,
+            "IV_data": iv_data if iv_data else None
         },
         "advanced_conditions": {
             "ADX": adx_value,
@@ -938,10 +1075,20 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
             "weekly_SMA_20": float(latest_weekly['SMA_20']) if not pd.isna(latest_weekly.get('SMA_20', float('nan'))) else None,
             "weekly_trend_condition_met": weekly_trend_condition_met,
             "entry_conditions_met": entry_conditions_met,
-            "pattern_bias": pattern_bias
+            "pattern_bias": pattern_bias,
+            "candlestick_timing": candlestick_timing if candlestick_timing else {
+                "timing": "none",
+                "description": "No candlestick patterns detected"
+            },
+            "news_sentiment": news_sentiment if news_sentiment else {
+                "sentiment_score": 0,
+                "relevance_score": 0,
+                "articles_analyzed": 0
+            },
+            "news_condition_met": news_condition_met
         },
         "options_recommendations": recommendations,
-        "market_outlook": pattern_bias,
+        "market_outlook": pattern_bias if patterns else "no_patterns",
         "pattern_based_outlook": pattern_bias,
         "price_based_outlook": "bullish" if pattern_df["Close"].iloc[-1] > pattern_df["Close"].iloc[-20] else "bearish",
         "analysis_parameters": {
@@ -954,7 +1101,10 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
             },
             "pattern_detection_window": "Daily" if timeframe == "daily" else "Weekly" if timeframe == "weekly" else "Hourly",
             "options_timeline": "30-45 days (optimal for daily patterns)"
-        }
+        },
+        "candlestick_timing": candlestick_timing,
+        "exit_warnings": exit_warnings,
+        "four_hour_timing": four_hour_timing  # NEW: 4-hour timing analysis
     }
     
     return report

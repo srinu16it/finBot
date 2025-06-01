@@ -505,8 +505,20 @@ def main():
                     with col2:
                         st.metric("Patterns Found", report['patterns_detected'])
                     with col3:
-                        outlook_icon = "📈" if report['market_outlook'] == 'bullish' else "📉"
-                        st.metric("Market Outlook", f"{outlook_icon} {report['market_outlook'].title()}")
+                        outlook = report['market_outlook']
+                        if outlook == 'no_patterns':
+                            outlook_icon = "❓"
+                            outlook_text = "No Patterns"
+                        elif outlook == 'bullish':
+                            outlook_icon = "📈"
+                            outlook_text = "Bullish"
+                        elif outlook == 'bearish':
+                            outlook_icon = "📉"
+                            outlook_text = "Bearish"
+                        else:
+                            outlook_icon = "➖"
+                            outlook_text = "Neutral"
+                        st.metric("Market Outlook", f"{outlook_icon} {outlook_text}")
                     with col4:
                         entry_icon = "✅" if report.get('advanced_conditions', {}).get('entry_conditions_met', False) else "❌"
                         st.metric("Entry Signal", f"{entry_icon} {'GO' if report.get('advanced_conditions', {}).get('entry_conditions_met', False) else 'NO'}")
@@ -551,10 +563,28 @@ def main():
                                     st.write(f"**IV:** {indicators['IV']:.1f}%")
                                     iv_hv_ratio = indicators['IV'] / indicators['HV_60'] if indicators['HV_60'] > 0 else 0
                                     st.write(f"**IV/HV:** {iv_hv_ratio:.2f}")
+                                    
+                                    # Show IV skew if available
+                                    iv_data = indicators.get('IV_data', {})
+                                    if iv_data and 'iv_skew' in iv_data:
+                                        skew = iv_data['iv_skew']
+                                        if skew > 5:
+                                            st.caption("📉 Put skew - Bearish sentiment")
+                                        elif skew < -5:
+                                            st.caption("📈 Call skew - Bullish sentiment")
+                                        else:
+                                            st.caption("Balanced IV skew")
                             
-                            # Entry decision
+                            # Entry decision with candlestick timing
                             if adv['entry_conditions_met']:
-                                st.success("✅ All entry conditions met - Trade recommended")
+                                # Check candlestick timing
+                                candlestick = adv.get('candlestick_timing', {})
+                                if candlestick.get('timing') == 'confirmed':
+                                    st.success(f"✅ All entry conditions met - Trade confirmed by {candlestick.get('pattern', 'candlestick')} pattern")
+                                elif candlestick.get('timing') == 'wait':
+                                    st.warning(f"⏳ Entry conditions met - {candlestick.get('description', 'Wait for candlestick confirmation')}")
+                                else:
+                                    st.success("✅ All entry conditions met - Trade recommended")
                             else:
                                 missing = []
                                 if not adv['ADX_condition_met']:
@@ -599,6 +629,13 @@ def main():
                                 - Monitor for pattern confirmation/failure
                                 """)
                     
+                    # Show exit warnings if any
+                    if 'exit_warnings' in report and report['exit_warnings']:
+                        with st.expander("⚠️ Exit Warnings", expanded=True):
+                            for warning in report['exit_warnings']:
+                                st.warning(f"**{warning['pattern'].replace('_', ' ').title()}** detected on {warning['date'].strftime('%Y-%m-%d')}: {warning['description']}")
+                                st.caption(f"Confidence: {warning['confidence']*100:.0f}% | Action: {warning['action'].replace('_', ' ')}")
+                    
                     # Display analysis parameters
                     if 'analysis_parameters' in report:
                         with st.expander("📊 Analysis Parameters", expanded=False):
@@ -629,7 +666,7 @@ def main():
                             """)
                     
                     # Create tabs
-                    tab1, tab2, tab3, tab4 = st.tabs(["📈 Chart", "🎯 Patterns", "💡 Options", "📊 Indicators"])
+                    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["📈 Chart", "🎯 Patterns", "💡 Options", "📊 Indicators", "📰 News", "⏰ 4H Timing"])
                     
                     with tab1:
                         # Fetch data for charting
@@ -731,6 +768,159 @@ def main():
                             
                             st.metric("MACD", f"{macd_value:.4f}")
                             st.metric("MACD Signal", f"{macd_signal_value:.4f}")
+                    
+                    with tab5:
+                        st.subheader("News Sentiment Analysis")
+                        
+                        adv = report.get('advanced_conditions', {})
+                        news = adv.get('news_sentiment', {})
+                        
+                        if news and news.get('articles_analyzed', 0) > 0:
+                            # Sentiment score with visual indicator
+                            sentiment_score = news.get('sentiment_score', 0)
+                            relevance = news.get('relevance_score', 0)
+                            
+                            col1, col2, col3 = st.columns(3)
+                            
+                            with col1:
+                                # Color code sentiment
+                                if sentiment_score > 0.3:
+                                    st.success(f"Sentiment: {sentiment_score:.2f} 😊")
+                                elif sentiment_score < -0.3:
+                                    st.error(f"Sentiment: {sentiment_score:.2f} 😟")
+                                else:
+                                    st.info(f"Sentiment: {sentiment_score:.2f} 😐")
+                            
+                            with col2:
+                                st.metric("Relevance", f"{relevance:.2f}")
+                            
+                            with col3:
+                                st.metric("Articles", news.get('articles_analyzed', 0))
+                            
+                            # Show how it affects entry
+                            if sentiment_score < -0.5:
+                                st.error("⚠️ Very negative news sentiment - Entry blocked")
+                            elif sentiment_score > 0.3:
+                                st.success("✅ Positive news sentiment - Entry supported")
+                            
+                            # Recent articles if available
+                            if 'recent_articles' in news and news['recent_articles']:
+                                st.markdown("### Recent Headlines")
+                                for article in news['recent_articles'][:3]:
+                                    with st.expander(article.get('title', 'No title')):
+                                        st.write(f"Sentiment: {article.get('sentiment', 0):.2f}")
+                                        st.write(f"Relevance: {article.get('relevance', 0):.2f}")
+                                        st.write(f"Time: {article.get('time', 'Unknown')}")
+                        else:
+                            st.info("No news sentiment data available. Using technical analysis only.")
+                    
+                    with tab6:
+                        st.subheader("4-Hour Timing Analysis")
+                        
+                        four_hour_data = report.get('four_hour_timing')
+                        
+                        if four_hour_data and four_hour_data != None:
+                            # Overall timing recommendation
+                            timing = four_hour_data.get('timing', 'wait')
+                            confidence = four_hour_data.get('confidence', 0.5)
+                            
+                            col1, col2, col3 = st.columns(3)
+                            
+                            with col1:
+                                # Timing signal with color
+                                timing_color = {
+                                    'immediate': '🟢',
+                                    'soon': '🟡', 
+                                    'wait': '🔴',
+                                    'unavailable': '⚫'
+                                }.get(timing, '⚪')
+                                st.metric("Entry Timing", f"{timing_color} {timing.upper()}")
+                            
+                            with col2:
+                                st.metric("Confidence", f"{confidence:.0%}")
+                            
+                            with col3:
+                                st.metric("4H Trend", four_hour_data.get('4h_trend', 'N/A').upper())
+                            
+                            # Recommendation
+                            st.info(f"**Recommendation:** {four_hour_data.get('recommendation', 'No recommendation available')}")
+                            
+                            # Entry zones
+                            if 'entry_zones' in four_hour_data and four_hour_data['entry_zones']:
+                                st.markdown("### 📍 Entry Zones")
+                                for zone in four_hour_data['entry_zones']:
+                                    st.write(f"• **{zone['type'].replace('_', ' ').title()}** at ${zone['level']:.2f}")
+                                    st.caption(f"  {zone['action']}")
+                            
+                            # Support/Resistance levels
+                            col1, col2 = st.columns(2)
+                            
+                            with col1:
+                                if 'support_levels' in four_hour_data and four_hour_data['support_levels']:
+                                    st.markdown("### 🛡️ Support Levels")
+                                    for level in four_hour_data['support_levels']:
+                                        st.write(f"• ${level:.2f}")
+                            
+                            with col2:
+                                if 'resistance_levels' in four_hour_data and four_hour_data['resistance_levels']:
+                                    st.markdown("### 🚧 Resistance Levels")
+                                    for level in four_hour_data['resistance_levels']:
+                                        st.write(f"• ${level:.2f}")
+                            
+                            # Entry reasons
+                            if 'entry_reasons' in four_hour_data and four_hour_data['entry_reasons']:
+                                st.markdown("### ✅ Entry Signals")
+                                for reason in four_hour_data['entry_reasons']:
+                                    st.write(f"• {reason}")
+                            
+                            # Entry score visualization
+                            if 'entry_score' in four_hour_data:
+                                score = four_hour_data['entry_score']
+                                st.markdown("### 📊 Entry Score")
+                                
+                                # Create a progress bar
+                                progress_value = min(score / 10, 1.0)  # Normalize to 0-1
+                                st.progress(progress_value)
+                                st.caption(f"Score: {score}/10 - {'Strong' if score >= 6 else 'Moderate' if score >= 4 else 'Weak'} signal")
+                            
+                            # Suggested stop
+                            if 'suggested_stop' in four_hour_data:
+                                st.markdown("### 🛑 Suggested Stop Loss")
+                                st.write(f"${four_hour_data['suggested_stop']:.2f} (based on 4H ATR)")
+                            
+                            # How to use this info
+                            with st.expander("📚 How to Use 4-Hour Timing", expanded=False):
+                                st.markdown("""
+                                ### Understanding 4-Hour Timing
+                                
+                                The 4-hour chart provides more granular entry timing to complement daily patterns:
+                                
+                                **Timing Signals:**
+                                - 🟢 **IMMEDIATE**: Strong setup, enter on next 4H candle
+                                - 🟡 **SOON**: Setup forming, prepare to enter within 1-2 candles
+                                - 🔴 **WAIT**: Not ideal, wait for better setup
+                                
+                                **Entry Zones:**
+                                - **Support Bounce**: Buy when price tests support level
+                                - **EMA Pullback**: Buy when price pulls back to moving average
+                                - **Resistance Rejection**: Short when price fails at resistance
+                                
+                                **Best Practices:**
+                                1. Wait for daily pattern confirmation first
+                                2. Use 4H timing to fine-tune your entry
+                                3. Enter during market hours for better fills
+                                4. Set alerts at key 4H levels
+                                5. Use 4H ATR for more precise stops
+                                
+                                **Note**: Each 4H bar represents ~2 trading days of behavior
+                                """)
+                        else:
+                            st.info("4-hour timing analysis not available. This could be due to:")
+                            st.write("• Limited intraday data availability")
+                            st.write("• Weekend or after-hours analysis")
+                            st.write("• Data provider limitations")
+                            
+                            st.caption("💡 Tip: 4-hour analysis works best during market hours with liquid stocks")
                     
                     # Export option
                     st.markdown("---")
