@@ -1,0 +1,1173 @@
+import streamlit as st
+import pandas as pd
+import plotly.graph_objs as go
+import numpy as np
+import finBot
+import datetime
+from scipy.signal import argrelextrema
+
+# Helper functions for pattern visualization
+def visualize_double_pattern(df, pattern_name, pattern_details, is_detected=False):
+    """Visualize double top/bottom patterns"""
+    fig = go.Figure()
+    
+    # Plot the price data
+    fig.add_trace(go.Scatter(x=df.index, y=df['Close'], mode='lines', name='Price', line=dict(color='blue')))
+    
+    if is_detected and pattern_details:
+        if 'top1' in pattern_details and 'top2' in pattern_details:  # Double Top
+            # Find the index positions by matching the price values
+            indices = []
+            for i, price in enumerate(df['Close']):
+                if abs(price - pattern_details['top1']) < 0.01 or abs(price - pattern_details['top2']) < 0.01:
+                    indices.append(i)
+            
+            # Get at most 2 indices that are sufficiently far apart
+            if len(indices) >= 2:
+                peak1_idx, peak2_idx = indices[0], indices[-1]
+                
+                # Mark the double top
+                fig.add_trace(go.Scatter(x=[df.index[peak1_idx], df.index[peak2_idx]], 
+                                        y=[pattern_details['top1'], pattern_details['top2']], 
+                                        mode='markers', marker=dict(color='red', size=10), 
+                                        name='Double Top'))
+                
+                # Add neckline
+                min_idx = df['Close'].iloc[peak1_idx:peak2_idx].idxmin()
+                fig.add_shape(type="line", x0=df.index[peak1_idx], y0=pattern_details['neckline'],
+                              x1=df.index[-1], y1=pattern_details['neckline'],
+                              line=dict(color="green", width=2, dash="dash"))
+                
+        elif 'bot1' in pattern_details and 'bot2' in pattern_details:  # Double Bottom
+            # Find the index positions by matching the price values
+            indices = []
+            for i, price in enumerate(df['Close']):
+                if abs(price - pattern_details['bot1']) < 0.01 or abs(price - pattern_details['bot2']) < 0.01:
+                    indices.append(i)
+            
+            # Get at most 2 indices that are sufficiently far apart
+            if len(indices) >= 2:
+                trough1_idx, trough2_idx = indices[0], indices[-1]
+                
+                # Mark the double bottom
+                fig.add_trace(go.Scatter(x=[df.index[trough1_idx], df.index[trough2_idx]], 
+                                        y=[pattern_details['bot1'], pattern_details['bot2']], 
+                                        mode='markers', marker=dict(color='green', size=10), 
+                                        name='Double Bottom'))
+                
+                # Add neckline
+                max_idx = df['Close'].iloc[trough1_idx:trough2_idx].idxmax()
+                fig.add_shape(type="line", x0=df.index[trough1_idx], y0=pattern_details['neckline'],
+                              x1=df.index[-1], y1=pattern_details['neckline'],
+                              line=dict(color="red", width=2, dash="dash"))
+    else:
+        # If pattern not detected, at least show extrema points
+        prices = df['Close'].values
+        df['local_max'] = df['Close'].iloc[argrelextrema(prices, np.greater_equal, order=3)[0]]
+        df['local_min'] = df['Close'].iloc[argrelextrema(prices, np.less_equal, order=3)[0]]
+        
+        tops = df.dropna(subset=['local_max'])
+        bottoms = df.dropna(subset=['local_min'])
+        
+        if not tops.empty:
+            fig.add_trace(go.Scatter(x=tops.index, y=tops['local_max'], 
+                                  mode='markers', marker=dict(color='red', size=6), 
+                                  name='Peaks'))
+        
+        if not bottoms.empty:
+            fig.add_trace(go.Scatter(x=bottoms.index, y=bottoms['local_min'], 
+                                   mode='markers', marker=dict(color='green', size=6), 
+                                   name='Troughs'))
+    
+    fig.update_layout(title=f"{pattern_name} Pattern", height=300, width=None,
+                     xaxis_title="Date", yaxis_title="Price", showlegend=True)
+    return fig
+
+def visualize_triple_pattern(df, pattern_name, pattern_details, is_detected=False):
+    """Visualize triple top/bottom patterns"""
+    fig = go.Figure()
+    
+    # Plot the price data
+    fig.add_trace(go.Scatter(x=df.index, y=df['Close'], mode='lines', name='Price', line=dict(color='blue')))
+    
+    if is_detected and pattern_details:
+        if 'top1' in pattern_details and 'top2' in pattern_details and 'top3' in pattern_details:  # Triple Top
+            # Find the indices of prices that match our peaks
+            top1_idx = df['Close'].sub(pattern_details['top1']).abs().idxmin()
+            top2_idx = df['Close'].sub(pattern_details['top2']).abs().idxmin()
+            top3_idx = df['Close'].sub(pattern_details['top3']).abs().idxmin()
+            
+            # Mark the triple top
+            fig.add_trace(go.Scatter(x=[top1_idx, top2_idx, top3_idx], 
+                                  y=[pattern_details['top1'], pattern_details['top2'], pattern_details['top3']], 
+                                  mode='markers', marker=dict(color='red', size=10), 
+                                  name='Triple Top'))
+            
+            # Add resistance line
+            fig.add_shape(type="line", x0=top1_idx, y0=pattern_details['resistance'],
+                        x1=df.index[-1], y1=pattern_details['resistance'],
+                        line=dict(color="red", width=2, dash="dash"))
+            
+        elif 'bot1' in pattern_details and 'bot2' in pattern_details and 'bot3' in pattern_details:  # Triple Bottom
+            # Find the indices of prices that match our troughs
+            bot1_idx = df['Close'].sub(pattern_details['bot1']).abs().idxmin()
+            bot2_idx = df['Close'].sub(pattern_details['bot2']).abs().idxmin()
+            bot3_idx = df['Close'].sub(pattern_details['bot3']).abs().idxmin()
+            
+            # Mark the triple bottom
+            fig.add_trace(go.Scatter(x=[bot1_idx, bot2_idx, bot3_idx], 
+                                  y=[pattern_details['bot1'], pattern_details['bot2'], pattern_details['bot3']], 
+                                  mode='markers', marker=dict(color='green', size=10), 
+                                  name='Triple Bottom'))
+            
+            # Add support line
+            fig.add_shape(type="line", x0=bot1_idx, y0=pattern_details['support'],
+                        x1=df.index[-1], y1=pattern_details['support'],
+                        line=dict(color="green", width=2, dash="dash"))
+    else:
+        # If pattern not detected, at least show extrema points
+        prices = df['Close'].values
+        df['local_max'] = df['Close'].iloc[argrelextrema(prices, np.greater_equal, order=3)[0]]
+        df['local_min'] = df['Close'].iloc[argrelextrema(prices, np.less_equal, order=3)[0]]
+        
+        tops = df.dropna(subset=['local_max'])
+        bottoms = df.dropna(subset=['local_min'])
+        
+        if not tops.empty:
+            fig.add_trace(go.Scatter(x=tops.index, y=tops['local_max'], 
+                                  mode='markers', marker=dict(color='red', size=6), 
+                                  name='Peaks'))
+        
+        if not bottoms.empty:
+            fig.add_trace(go.Scatter(x=bottoms.index, y=bottoms['local_min'], 
+                                   mode='markers', marker=dict(color='green', size=6), 
+                                   name='Troughs'))
+    
+    fig.update_layout(title=f"{pattern_name} Pattern", height=300, width=None,
+                     xaxis_title="Date", yaxis_title="Price", showlegend=True)
+    return fig
+
+def visualize_head_shoulders(df, pattern_name, pattern_details, is_detected=False):
+    """Visualize head and shoulders or inverse head and shoulders patterns"""
+    fig = go.Figure()
+    
+    # Plot the price data
+    fig.add_trace(go.Scatter(x=df.index, y=df['Close'], mode='lines', name='Price', line=dict(color='blue')))
+    
+    if is_detected and pattern_details:
+        if 'left' in pattern_details and 'head' in pattern_details and 'right' in pattern_details:
+            # Find indices that closely match the pattern points
+            left_idx = df['Close'].sub(pattern_details['left']).abs().idxmin()
+            head_idx = df['Close'].sub(pattern_details['head']).abs().idxmin()
+            right_idx = df['Close'].sub(pattern_details['right']).abs().idxmin()
+            
+            pattern_type = "Head & Shoulders" if pattern_details['head'] > pattern_details['left'] else "Inverse Head & Shoulders"
+            point_color = "red" if pattern_type == "Head & Shoulders" else "green"
+            
+            # Mark the H&S pattern
+            fig.add_trace(go.Scatter(x=[left_idx, head_idx, right_idx], 
+                                  y=[pattern_details['left'], pattern_details['head'], pattern_details['right']], 
+                                  mode='markers+lines', marker=dict(color=point_color, size=10), 
+                                  line=dict(color=point_color, dash='dot'),
+                                  name=pattern_type))
+            
+            # Add neckline
+            fig.add_shape(type="line", x0=left_idx, y0=pattern_details['neckline'],
+                        x1=df.index[-1], y1=pattern_details['neckline'],
+                        line=dict(color="orange", width=2, dash="dash"))
+    else:
+        # If pattern not detected, show peaks and troughs
+        prices = df['Close'].values
+        df['local_max'] = df['Close'].iloc[argrelextrema(prices, np.greater_equal, order=3)[0]]
+        df['local_min'] = df['Close'].iloc[argrelextrema(prices, np.less_equal, order=3)[0]]
+        
+        tops = df.dropna(subset=['local_max'])
+        bottoms = df.dropna(subset=['local_min'])
+        
+        if not tops.empty:
+            fig.add_trace(go.Scatter(x=tops.index, y=tops['local_max'], 
+                                  mode='markers', marker=dict(color='red', size=6), 
+                                  name='Peaks'))
+        
+        if not bottoms.empty:
+            fig.add_trace(go.Scatter(x=bottoms.index, y=bottoms['local_min'], 
+                                   mode='markers', marker=dict(color='green', size=6), 
+                                   name='Troughs'))
+    
+    fig.update_layout(title=f"{pattern_name} Pattern", height=300, width=None,
+                     xaxis_title="Date", yaxis_title="Price", showlegend=True)
+    return fig
+
+def visualize_wedge(df, pattern_name, pattern_details, is_detected=False):
+    """Visualize wedge patterns (rising or falling)"""
+    fig = go.Figure()
+    
+    # Plot the price data
+    fig.add_trace(go.Scatter(x=df.index, y=df['Close'], mode='lines', name='Price', line=dict(color='blue')))
+    
+    if is_detected and pattern_details:
+        pattern_type = pattern_details.get('pattern', '')
+        idx = np.arange(len(df))
+        
+        # Calculate trendlines
+        top_slope = pattern_details.get('top_slope', 0)
+        bot_slope = pattern_details.get('bot_slope', 0)
+        
+        # Find a good y-intercept that places the lines near the price action
+        highs = df['High'].values
+        lows = df['Low'].values
+        top_intercept = np.median(highs - top_slope * idx)
+        bot_intercept = np.median(lows - bot_slope * idx)
+        
+        # Create trendlines
+        top_line = top_slope * idx + top_intercept
+        bot_line = bot_slope * idx + bot_intercept
+        
+        # Determine if this is a bullish or bearish wedge
+        is_bullish = "Bullish" in pattern_name
+        
+        # Add trendlines
+        fig.add_trace(go.Scatter(x=df.index, y=top_line, mode='lines', 
+                              line=dict(color='red', width=2, dash='dot'), 
+                              name='Upper Trendline'))
+        
+        fig.add_trace(go.Scatter(x=df.index, y=bot_line, mode='lines', 
+                              line=dict(color='green', width=2, dash='dot'), 
+                              name='Lower Trendline'))
+    else:
+        # If pattern not detected, still try to show a basic trendline fit
+        idx = np.arange(len(df))
+        highs = df['High'].values
+        lows = df['Low'].values
+        
+        # Simple linear regression
+        top_fit = np.polyfit(idx, highs, 1)
+        bot_fit = np.polyfit(idx, lows, 1)
+        
+        top_line = top_fit[0] * idx + top_fit[1]
+        bot_line = bot_fit[0] * idx + bot_fit[1]
+        
+        fig.add_trace(go.Scatter(x=df.index, y=top_line, mode='lines', 
+                              line=dict(color='grey', width=1, dash='dot'), 
+                              name='High Trendline'))
+        
+        fig.add_trace(go.Scatter(x=df.index, y=bot_line, mode='lines', 
+                              line=dict(color='grey', width=1, dash='dot'), 
+                              name='Low Trendline'))
+    
+    fig.update_layout(title=f"{pattern_name}", height=300, width=None,
+                     xaxis_title="Date", yaxis_title="Price", showlegend=True)
+    return fig
+
+def visualize_triangle(df, pattern_name, pattern_details, is_detected=False):
+    """Visualize triangle patterns (ascending, descending, or symmetrical)"""
+    fig = go.Figure()
+    
+    # Plot the price data
+    fig.add_trace(go.Scatter(x=df.index, y=df['Close'], mode='lines', name='Price', line=dict(color='blue')))
+    
+    if is_detected and pattern_details:
+        idx = np.arange(len(df))
+        
+        # Calculate trendlines
+        top_slope = pattern_details.get('top_slope', 0)
+        bot_slope = pattern_details.get('bot_slope', 0)
+        
+        # Find a good y-intercept that places the lines near the price action
+        highs = df['High'].values
+        lows = df['Low'].values
+        top_intercept = np.median(highs - top_slope * idx)
+        bot_intercept = np.median(lows - bot_slope * idx)
+        
+        # Create trendlines
+        top_line = top_slope * idx + top_intercept
+        bot_line = bot_slope * idx + bot_intercept
+        
+        # Determine triangle type
+        pattern_type = pattern_details.get('pattern', '')
+        
+        # Add trendlines
+        fig.add_trace(go.Scatter(x=df.index, y=top_line, mode='lines', 
+                              line=dict(color='red', width=2, dash='dot'), 
+                              name='Upper Trendline'))
+        
+        fig.add_trace(go.Scatter(x=df.index, y=bot_line, mode='lines', 
+                              line=dict(color='green', width=2, dash='dot'), 
+                              name='Lower Trendline'))
+        
+        # Find where trendlines intersect (the apex of the triangle)
+        if abs(top_slope - bot_slope) > 0.001:  # Avoid division by zero
+            intersection_x = (bot_intercept - top_intercept) / (top_slope - bot_slope)
+            if 0 <= intersection_x <= len(df) * 1.5:  # Check if intersection is within a reasonable range
+                intersection_y = top_slope * intersection_x + top_intercept
+                # Convert to the index point
+                if intersection_x < len(df):
+                    x_point = df.index[int(intersection_x)]
+                else:
+                    # Extrapolated point beyond data
+                    last_date = df.index[-1]
+                    try:
+                        x_point = last_date + pd.Timedelta(days=int(intersection_x - len(df) + 1))
+                    except:
+                        x_point = last_date  # Fallback
+                
+                # Mark the apex
+                fig.add_trace(go.Scatter(x=[x_point], y=[intersection_y], 
+                                      mode='markers', marker=dict(color='purple', size=10), 
+                                      name='Triangle Apex'))
+    else:
+        # If pattern not detected, still try to show a basic trendline fit
+        idx = np.arange(len(df))
+        highs = df['High'].values
+        lows = df['Low'].values
+        
+        # Simple linear regression
+        top_fit = np.polyfit(idx, highs, 1)
+        bot_fit = np.polyfit(idx, lows, 1)
+        
+        top_line = top_fit[0] * idx + top_fit[1]
+        bot_line = bot_fit[0] * idx + bot_fit[1]
+        
+        fig.add_trace(go.Scatter(x=df.index, y=top_line, mode='lines', 
+                              line=dict(color='grey', width=1, dash='dot'), 
+                              name='High Trendline'))
+        
+        fig.add_trace(go.Scatter(x=df.index, y=bot_line, mode='lines', 
+                              line=dict(color='grey', width=1, dash='dot'), 
+                              name='Low Trendline'))
+    
+    fig.update_layout(title=f"{pattern_name}", height=300, width=None,
+                     xaxis_title="Date", yaxis_title="Price", showlegend=True)
+    return fig
+
+def visualize_flag_pennant(df, pattern_name, pattern_details, is_detected=False):
+    """Visualize flag or pennant patterns"""
+    fig = go.Figure()
+    
+    # Plot the price data
+    fig.add_trace(go.Scatter(x=df.index, y=df['Close'], mode='lines', name='Price', line=dict(color='blue')))
+    
+    if is_detected and pattern_details:
+        pattern_type = pattern_details.get('type', '')
+        pole_change = pattern_details.get('pole_change', 0)
+        
+        # Visualize the flag/pennant pattern
+        start_idx = df.index[0]
+        pole_end_idx = df.index[10]  # Pole is assumed to be in first 10 bars
+        
+        # Draw the pole
+        pole_start_price = df['Close'].iloc[0]
+        pole_end_price = df['Close'].iloc[10]
+        
+        fig.add_trace(go.Scatter(x=[start_idx, pole_end_idx], 
+                              y=[pole_start_price, pole_end_price], 
+                              mode='lines', line=dict(color='purple', width=3), 
+                              name='Flag Pole'))
+        
+        # Draw the flag/pennant using trendlines
+        idx = np.arange(len(df))
+        top_slope = pattern_details.get('top_slope', 0)
+        bot_slope = pattern_details.get('bot_slope', 0)
+        
+        # Calculate intercepts to position the lines correctly
+        flag_start = 10  # Starting after the pole
+        top_price = df['High'].iloc[flag_start]
+        bot_price = df['Low'].iloc[flag_start]
+        
+        top_intercept = top_price - top_slope * flag_start
+        bot_intercept = bot_price - bot_slope * flag_start
+        
+        # Create flag/pennant boundaries
+        flag_idx = idx[flag_start:]
+        top_line = top_slope * flag_idx + top_intercept
+        bot_line = bot_slope * flag_idx + bot_intercept
+        
+        # Add flag/pennant trendlines
+        fig.add_trace(go.Scatter(x=df.index[flag_start:], y=top_line, mode='lines', 
+                              line=dict(color='orange', width=2, dash='dot'), 
+                              name='Upper Boundary'))
+        
+        fig.add_trace(go.Scatter(x=df.index[flag_start:], y=bot_line, mode='lines', 
+                              line=dict(color='orange', width=2, dash='dot'), 
+                              name='Lower Boundary'))
+        
+    else:
+        # If pattern not detected, show a simplified version with basic trendlines
+        # Assume first 1/3 of the data could be a pole
+        pole_end = len(df) // 3
+        flag_idx = np.arange(pole_end, len(df))
+        
+        # Draw a basic pole line
+        start_price = df['Close'].iloc[0]
+        pole_end_price = df['Close'].iloc[pole_end-1]
+        
+        fig.add_trace(go.Scatter(x=[df.index[0], df.index[pole_end-1]], 
+                              y=[start_price, pole_end_price], 
+                              mode='lines', line=dict(color='grey', width=1), 
+                              name='Potential Pole'))
+        
+        # Draw basic flag/pennant trendlines
+        flag_highs = df['High'].iloc[pole_end:].values
+        flag_lows = df['Low'].iloc[pole_end:].values
+        flag_idx_array = np.arange(len(flag_idx))
+        
+        if len(flag_idx_array) > 0 and len(flag_highs) > 0 and len(flag_lows) > 0:
+            top_fit = np.polyfit(flag_idx_array, flag_highs, 1) if len(flag_highs) > 1 else [0, flag_highs[0]]
+            bot_fit = np.polyfit(flag_idx_array, flag_lows, 1) if len(flag_lows) > 1 else [0, flag_lows[0]]
+            
+            top_line = top_fit[0] * flag_idx_array + top_fit[1]
+            bot_line = bot_fit[0] * flag_idx_array + bot_fit[1]
+            
+            fig.add_trace(go.Scatter(x=df.index[pole_end:], y=top_line, mode='lines', 
+                                  line=dict(color='grey', width=1, dash='dot'), 
+                                  name='Potential Upper Boundary'))
+            
+            fig.add_trace(go.Scatter(x=df.index[pole_end:], y=bot_line, mode='lines', 
+                                  line=dict(color='grey', width=1, dash='dot'), 
+                                  name='Potential Lower Boundary'))
+    
+    fig.update_layout(title=f"{pattern_name}", height=300, width=None,
+                     xaxis_title="Date", yaxis_title="Price", showlegend=True)
+    return fig
+
+# Configure page
+st.set_page_config(page_title="Options Trading Advisor", page_icon="📈", layout="wide")
+
+# Title and description
+st.title("💸 Options Trading Advisor")
+st.write("""
+Get actionable options trading recommendations based on technical patterns and AI analysis.
+
+Enter a stock symbol to receive short-term trading signals for options strategies.
+""")
+
+# Input section with expiry selection
+with st.form(key='stock_form'):
+    col1, col2 = st.columns([3, 2])
+    with col1:
+        symbol = st.text_input("Stock Symbol (e.g., AAPL, MSFT)", "AAPL")
+    with col2:
+        # Generate next 4 Fridays for options expiry
+        today = datetime.datetime.now()
+        friday_delta = (4 - today.weekday()) % 7  # Days until next Friday
+        fridays = [(today + datetime.timedelta(days=friday_delta + i*7)).strftime("%b %d") for i in range(4)]
+        expiry = st.selectbox("Options Expiry", fridays)
+    submit_button = st.form_submit_button("🔍 Analyze Trading Opportunity")
+
+if submit_button:
+    with st.spinner("Analyzing stock data..."):
+        try:
+            # Run the analysis through the graph
+            result = finBot.graph.invoke({"symbol": symbol})
+            
+        except Exception as e:
+            st.error(f"Error analyzing stock: {str(e)}")
+            
+            # Display results
+            st.success("Analysis Complete!")
+            
+            # Main container for the app
+            ohlcv = result.get("ohlcv")
+            direction = result.get("llm_opinion", "No response").split("\n")[0].split(":")[-1].strip()
+            indicator_summary = result.get("indicator_summary", "")
+            
+            if ohlcv is not None and not isinstance(ohlcv, str) and not ohlcv.empty:
+                latest_price = ohlcv["Close"].iloc[-1]
+                recent_high = ohlcv["High"].tail(20).max()
+                recent_low = ohlcv["Low"].tail(20).min()
+                atr = ohlcv["High"].tail(14).max() - ohlcv["Low"].tail(14).min()  # Simple ATR approximation
+                daily_volatility = ohlcv["Close"].tail(5).pct_change().std() * 100
+                
+                # Determine confidence based on pattern detection and indicators
+                confidence = 50  # Default moderate confidence
+                if "No clear pattern" not in result.get("double_pattern_signal", "") or \
+                   "No pattern" not in result.get("triple_pattern_signal", "") or \
+                   "No pattern" not in result.get("hs_pattern_signal", ""):
+                    confidence += 20  # Pattern detected
+                
+                # Adjust for strong direction in llm opinion
+                if "strong" in direction.lower() or "clear" in direction.lower():
+                    confidence += 15
+                    
+                # Set time frame based on data
+                time_frame = "Short-term (1-5 days)"
+                
+                # Trading signal background color
+                signal_color = "#FFB300" # Default yellow (wait)
+                if direction.upper().startswith("BULLISH"):
+                    signal_color = "#4CAF50" # Green
+                elif direction.upper().startswith("BEARISH"):
+                    signal_color = "#F44336" # Red
+                
+                # --- TRADING SIGNAL PANEL ---
+                st.markdown("<h2 style='text-align: center;'>TRADING SIGNAL</h2>", unsafe_allow_html=True)
+                
+                cols = st.columns([2, 3, 2])
+                with cols[1]:
+                    if direction.upper().startswith("BULLISH"):
+                        signal = "BUY CALL OPTIONS"
+                        direction_text = "BULLISH"
+                    elif direction.upper().startswith("BEARISH"):
+                        signal = "BUY PUT OPTIONS"
+                        direction_text = "BEARISH"
+                    else:
+                        signal = "WAIT"
+                        direction_text = "NEUTRAL"
+                    
+                    st.markdown(f"<div style='background-color:{signal_color}; padding:20px; border-radius:10px; text-align:center;'>"
+                              f"<h1 style='color:white; margin:0;'>{signal}</h1>"
+                              f"<h3 style='color:white; margin:10px 0 0 0;'>{direction_text} • {confidence}% Confidence • {time_frame}</h3>"
+                              f"</div>", unsafe_allow_html=True)
+                
+                # --- PRICE ACTION & ENTRY/EXIT STRATEGY ---
+                st.markdown("<h2 style='margin-top:30px;'>ENTRY/EXIT STRATEGY</h2>", unsafe_allow_html=True)
+                
+                col1, col2 = st.columns([3, 2])
+                with col1:
+                    # Price chart with key levels
+                    price_fig = go.Figure()
+                    price_fig.add_trace(go.Candlestick(
+                        x=ohlcv["Datetime"].tail(30),
+                        open=ohlcv["Open"].tail(30),
+                        high=ohlcv["High"].tail(30),
+                        low=ohlcv["Low"].tail(30),
+                        close=ohlcv["Close"].tail(30),
+                        name="Price Action"
+                    ))
+                    
+                    # Add key levels
+                    target_price = 0
+                    stop_price = 0
+                    if direction.upper().startswith("BULLISH"):
+                        target_price = round(latest_price + (atr * 1.5), 2)
+                        stop_price = round(max(latest_price - (atr * 0.8), recent_low), 2)
+                        price_fig.add_hline(y=target_price, line_dash="dash", line_color="green", annotation_text="Target")
+                        price_fig.add_hline(y=stop_price, line_dash="dash", line_color="red", annotation_text="Stop Loss")
+                        price_fig.add_hline(y=latest_price, line_dash="solid", line_color="blue", annotation_text="Entry")
+                    elif direction.upper().startswith("BEARISH"):
+                        target_price = round(latest_price - (atr * 1.5), 2)
+                        stop_price = round(min(latest_price + (atr * 0.8), recent_high), 2)
+                        price_fig.add_hline(y=target_price, line_dash="dash", line_color="green", annotation_text="Target")
+                        price_fig.add_hline(y=stop_price, line_dash="dash", line_color="red", annotation_text="Stop Loss")
+                        price_fig.add_hline(y=latest_price, line_dash="solid", line_color="blue", annotation_text="Entry")
+                    
+                    price_fig.update_layout(
+                        title=f"{symbol} Price Action with Key Levels",
+                        height=400,
+                        xaxis_rangeslider_visible=False
+                    )
+                    st.plotly_chart(price_fig, use_container_width=True)
+                
+                with col2:
+                    # Entry/Exit Strategy card
+                    st.markdown("#### Key Price Levels")
+                    
+                    if direction.upper().startswith("BULLISH") or direction.upper().startswith("BEARISH"):
+                        reward_risk = abs((target_price - latest_price) / (latest_price - stop_price))
+                        win_rate_needed = 1 / (1 + reward_risk)  # Required win rate for profitable strategy
+                        
+                        levels_markdown = f"""
+                        💰 **Current Price:** ${latest_price:.2f}  
+                        🎯 **Target Price:** ${target_price:.2f} ({abs(target_price - latest_price) / latest_price * 100:.1f}% move)  
+                        🛑 **Stop Loss:** ${stop_price:.2f} ({abs(stop_price - latest_price) / latest_price * 100:.1f}% move)  
+                        ⚖️ **Reward/Risk Ratio:** {reward_risk:.2f}  
+                        📊 **Required Win Rate:** {win_rate_needed*100:.1f}%  
+                        ⏱️ **Time Frame:** {time_frame}  
+                        🎲 **Confidence:** {confidence}%
+                        """
+                        st.markdown(levels_markdown)
+                        
+                        # TRADING PLAN
+                        if direction.upper().startswith("BULLISH"):
+                            strategy = f"Buy call options on {symbol} with strike near ${round(latest_price, 1)}"
+                            exit_plan = f"- Take profits at ${target_price:.2f}\n- Cut losses at ${stop_price:.2f}"
+                            ideal_scenario = "Price breaks above recent resistance with increasing volume"
+                        else:
+                            strategy = f"Buy put options on {symbol} with strike near ${round(latest_price, 1)}"
+                            exit_plan = f"- Take profits at ${target_price:.2f}\n- Cut losses at ${stop_price:.2f}"
+                            ideal_scenario = "Price breaks below recent support with increasing volume"
+                        
+                        st.markdown("#### TRADING PLAN")
+                        st.markdown(f"**Strategy:** {strategy}")
+                        st.markdown(f"**Expiry:** {expiry}")
+                        st.markdown(f"**Exit Plan:**\n{exit_plan}")
+                        st.markdown(f"**Ideal Scenario:** {ideal_scenario}")
+                    else:
+                        st.warning("No clear trading signal at this time. Recommendation: WAIT for better setup.")
+
+            # --- SIMPLIFIED OPTIONS TRADING ANALYSIS ---
+            st.markdown("<h2 style='margin-top:30px;'>OPTIONS TRADING SIGNALS</h2>", unsafe_allow_html=True)
+            
+            # Get all patterns from the analysis
+            patterns = {
+                "Double Pattern": result.get("double_pattern_signal", "No pattern"),
+                "Triple Pattern": result.get("triple_pattern_signal", "No pattern"),
+                "Head & Shoulders": result.get("hs_pattern_signal", "No pattern"),
+                "Wedge Pattern": result.get("wedge_pattern_signal", "No pattern"),
+                "Pennant Pattern": result.get("pennant_pattern_signal", "No pattern"),
+                "Flag Pattern": result.get("flag_pattern_signal", "No pattern"),
+                "Triangle Pattern": result.get("triangle_pattern_signal", "No pattern")
+            }
+            # Get pattern details for additional information
+            pattern_details = {
+                "Double Pattern": result.get("double_pattern_details", {}),
+                "Triple Pattern": result.get("triple_pattern_details", {}),
+                "Head & Shoulders": result.get("hs_pattern_details", {}),
+                "Wedge Pattern": result.get("wedge_pattern_details", {}),
+                "Pennant Pattern": result.get("pennant_pattern_details", {}),
+                "Flag Pattern": result.get("flag_pattern_details", {}),
+                "Triangle Pattern": result.get("triangle_pattern_details", {})
+            }
+                
+            # Create a simplified, trading-focused interface
+            st.markdown("### 📈 Options Trade Setup")
+            
+            # Create options trading tabs to focus on calls vs puts
+            tabs = st.tabs(["🟢 CALL Options Setup", "🔴 PUT Options Setup"])
+            
+            # --- CALL Options Tab (Bullish Setups) ---
+            with tabs[0]:
+                bullish_patterns_found = False
+                
+                # Create a dataframe with recent price data for visualization
+                recent_df = ohlcv.copy().tail(100)
+                recent_df = recent_df.reset_index()
+                
+                # Consolidate all bullish signals
+                bullish_signals = []
+                
+                # Check for bullish reversal patterns
+                if "Inverted Head & Shoulders" in patterns["Head & Shoulders"] or "Bullish Reversal" in patterns["Head & Shoulders"]:
+                    bullish_signals.append(("Inverted Head & Shoulders", "Head & Shoulders", 3))
+                
+                if "Double Bottom" in patterns["Double Pattern"] or ("Double" in patterns["Double Pattern"] and "Bullish" in patterns["Double Pattern"]):
+                    bullish_signals.append(("Double Bottom", "Double Pattern", 3))
+                    
+                if "Triple Bottom" in patterns["Triple Pattern"] or ("Triple" in patterns["Triple Pattern"] and "Bullish" in patterns["Triple Pattern"]):
+                    bullish_signals.append(("Triple Bottom", "Triple Pattern", 4))
+                    
+                if "Falling Wedge" in patterns["Wedge Pattern"] and "Reversal" in patterns["Wedge Pattern"]:
+                    bullish_signals.append(("Falling Wedge", "Wedge Pattern", 2))
+                
+                # Check for bullish continuation patterns
+                if "Bullish Triangle" in patterns["Triangle Pattern"] or "Ascending Triangle" in patterns["Triangle Pattern"]:
+                    bullish_signals.append(("Bullish Triangle", "Triangle Pattern", 2))
+                
+                if "Bullish Flag" in patterns["Flag Pattern"]:
+                    bullish_signals.append(("Bullish Flag", "Flag Pattern", 2))
+                    
+                if "Bullish Pennant" in patterns["Pennant Pattern"]:
+                    bullish_signals.append(("Bullish Pennant", "Pennant Pattern", 2))
+                    
+                if "Falling Wedge" in patterns["Wedge Pattern"] and "Continuation" in patterns["Wedge Pattern"]:
+                    bullish_signals.append(("Falling Wedge (Continuation)", "Wedge Pattern", 2))
+                
+                # Display bullish setup if signals found
+                if bullish_signals:
+                    bullish_patterns_found = True
+                    
+                    # Sort by strength (higher priority patterns first)
+                    bullish_signals.sort(key=lambda x: x[2], reverse=True)
+                    
+                    # Show a simple list of the detected patterns
+                    for pattern_name, pattern_type, _ in bullish_signals:
+                        st.success(f"✅ **{pattern_name}** detected")
+                    
+                    # Calculate price targets based on the patterns
+                    latest_price = recent_df["Close"].iloc[-1] 
+                    
+                    # Calculate target based on strongest pattern
+                    strongest_pattern = bullish_signals[0]
+                    pattern_name, pattern_type, strength = strongest_pattern
+                    
+                    # Different targets based on pattern type
+                    target_percent = strength * 1.5  # Base target on pattern strength
+                    stop_percent = 3.0  # Standard 3% stop loss
+                    
+                    # Calculate prices
+                    target_price = latest_price * (1 + (target_percent / 100))
+                    stop_price = latest_price * (1 - (stop_percent / 100))
+                    
+                    # Create columns for entry/target/stop
+                    st.markdown("### 💰 Options Trade Setup")
+                    cols = st.columns(3)
+                    with cols[0]:
+                        st.metric("Entry Price", f"${latest_price:.2f}")
+                    with cols[1]:
+                        st.metric("Target", f"${target_price:.2f}", f"+{target_percent:.1f}%")
+                    with cols[2]:
+                        st.metric("Stop Loss", f"${stop_price:.2f}", f"-{stop_percent:.1f}%")
+                    
+                    # Calculate options parameters
+                    days_to_expiry = 30  # Default for short-term options
+                    strike_suggestion = round(latest_price * 1.02, 0)  # Slightly OTM call
+                    
+                    # Options strategy recommendation
+                    st.markdown(f"""### 📊 CALL Options Strategy
+                    - **Strike Price**: ${strike_suggestion} (slightly OTM)
+                    - **Expiration**: ~{days_to_expiry} days out
+                    - **Strategy**: Long Call
+                    - **Risk Level**: {['Low', 'Medium', 'High'][min(strength-1, 2)]}
+                    - **Pattern Quality**: {['Fair', 'Good', 'Strong', 'Very Strong'][min(strength-1, 3)]}
+                    """)
+                    
+                    # Display the primary pattern
+                    st.markdown(f"### {pattern_name} Pattern")
+                    
+                    # Create a simpler visualization that focuses on trading setup
+                    fig = go.Figure()
+                    
+                    # Add price candles
+                    fig.add_trace(go.Candlestick(
+                        x=recent_df.index,
+                        open=recent_df['Open'],
+                        high=recent_df['High'],
+                        low=recent_df['Low'],
+                        close=recent_df['Close'],
+                        name="Price"
+                    ))
+                    
+                    # Add entry, target and stop lines
+                    fig.add_hline(y=latest_price, line_color="green", line_dash="dash", annotation_text="Entry")
+                    fig.add_hline(y=target_price, line_color="blue", annotation_text="Target")
+                    fig.add_hline(y=stop_price, line_color="red", line_dash="dash", annotation_text="Stop Loss")
+                    
+                    # Improve layout
+                    fig.update_layout(
+                        title=f"CALL Option Setup - {pattern_name}",
+                        height=400,
+                        xaxis_rangeslider_visible=False
+                    )
+                    
+                    st.plotly_chart(fig, use_container_width=True)
+                    
+                # Display a message if no bullish patterns found
+                if not bullish_signals:
+                    st.info("No bullish patterns detected. Consider PUT options or waiting for a better setup.")
+                    
+            # --- PUT Options Tab (Bearish Setups) ---
+            with tabs[1]:
+                # Consolidate all bearish signals
+                bearish_signals = []
+                
+                # Check for bearish reversal patterns
+                if "Head & Shoulders" in patterns["Head & Shoulders"] or "Bearish Reversal" in patterns["Head & Shoulders"]:
+                    bearish_signals.append(("Head & Shoulders", "Head & Shoulders", 3))
+                
+                if "Double Top" in patterns["Double Pattern"] or ("Double" in patterns["Double Pattern"] and "Bearish" in patterns["Double Pattern"]):
+                    bearish_signals.append(("Double Top", "Double Pattern", 3))
+                    
+                if "Triple Top" in patterns["Triple Pattern"] or ("Triple" in patterns["Triple Pattern"] and "Bearish" in patterns["Triple Pattern"]):
+                    bearish_signals.append(("Triple Top", "Triple Pattern", 4))
+                    
+                if "Rising Wedge" in patterns["Wedge Pattern"] and "Reversal" in patterns["Wedge Pattern"]:
+                    bearish_signals.append(("Rising Wedge", "Wedge Pattern", 2))
+                
+                # Check for bearish continuation patterns
+                if "Bearish Triangle" in patterns["Triangle Pattern"] or "Descending Triangle" in patterns["Triangle Pattern"]:
+                    bearish_signals.append(("Bearish Triangle", "Triangle Pattern", 2))
+                
+                if "Bearish Flag" in patterns["Flag Pattern"]:
+                    bearish_signals.append(("Bearish Flag", "Flag Pattern", 2))
+                    
+                if "Bearish Pennant" in patterns["Pennant Pattern"]:
+                    bearish_signals.append(("Bearish Pennant", "Pennant Pattern", 2))
+                    
+                if "Rising Wedge" in patterns["Wedge Pattern"] and "Continuation" in patterns["Wedge Pattern"]:
+                    bearish_signals.append(("Rising Wedge (Continuation)", "Wedge Pattern", 2))
+                
+                # Display bearish setup if signals found
+                if bearish_signals:
+                    # Sort by strength (higher priority patterns first)
+                    bearish_signals.sort(key=lambda x: x[2], reverse=True)
+                    
+                    # Show a simple list of the detected patterns
+                    for pattern_name, pattern_type, _ in bearish_signals:
+                        st.success(f"✅ **{pattern_name}** detected")
+                    
+                    # Calculate price targets based on the patterns
+                    latest_price = recent_df["Close"].iloc[-1] 
+                    
+                    # Calculate target based on strongest pattern
+                    strongest_pattern = bearish_signals[0]
+                    pattern_name, pattern_type, strength = strongest_pattern
+                    
+                    # Different targets based on pattern type
+                    target_percent = strength * 1.5  # Base target on pattern strength
+                    stop_percent = 3.0  # Standard 3% stop loss
+                    
+                    # Calculate prices for bearish setup
+                    target_price = latest_price * (1 - (target_percent / 100))  # Price decrease
+                    stop_price = latest_price * (1 + (stop_percent / 100))      # Price increase (for stop)
+                    
+                    # Create columns for entry/target/stop
+                    st.markdown("### 💰 Options Trade Setup")
+                    cols = st.columns(3)
+                    with cols[0]:
+                        st.metric("Entry Price", f"${latest_price:.2f}")
+                    with cols[1]:
+                        st.metric("Target", f"${target_price:.2f}", f"-{target_percent:.1f}%")
+                    with cols[2]:
+                        st.metric("Stop Loss", f"${stop_price:.2f}", f"+{stop_percent:.1f}%")
+                    
+                    # Calculate options parameters
+                    days_to_expiry = 30  # Default for short-term options
+                    strike_suggestion = round(latest_price * 0.98, 0)  # Slightly OTM put
+                    
+                    # Options strategy recommendation
+                    st.markdown(f"""### 📊 PUT Options Strategy
+                    - **Strike Price**: ${strike_suggestion} (slightly OTM)
+                    - **Expiration**: ~{days_to_expiry} days out
+                    - **Strategy**: Long Put
+                    - **Risk Level**: {['Low', 'Medium', 'High'][min(strength-1, 2)]}
+                    - **Pattern Quality**: {['Fair', 'Good', 'Strong', 'Very Strong'][min(strength-1, 3)]}
+                    """)
+                    
+                    # Display the primary pattern
+                    st.markdown(f"### {pattern_name} Pattern")
+                    
+                    # Create a simpler visualization that focuses on trading setup
+                    fig = go.Figure()
+                    
+                    # Add price candles
+                    fig.add_trace(go.Candlestick(
+                        x=recent_df.index,
+                        open=recent_df['Open'],
+                        high=recent_df['High'],
+                        low=recent_df['Low'],
+                        close=recent_df['Close'],
+                        name="Price"
+                    ))
+                    
+                    # Add entry, target and stop lines
+                    fig.add_hline(y=latest_price, line_color="red", line_dash="dash", annotation_text="Entry")
+                    fig.add_hline(y=target_price, line_color="blue", annotation_text="Target")
+                    fig.add_hline(y=stop_price, line_color="green", line_dash="dash", annotation_text="Stop Loss")
+                    
+                    # Improve layout
+                    fig.update_layout(
+                        title=f"PUT Option Setup - {pattern_name}",
+                        height=400,
+                        xaxis_rangeslider_visible=False
+                    )
+                    
+                    st.plotly_chart(fig, use_container_width=True)
+                else:
+                    st.info("No bearish patterns detected. Consider CALL options or waiting for a better setup.")
+                    # Show a placeholder visualization to explain what patterns to look for
+                    blank_fig = go.Figure()
+                    blank_fig.add_annotation(text="Bullish Reversal Patterns: Inverse Head & Shoulders, Double Bottom, Triple Bottom, Falling Wedge", 
+                                          xref="paper", yref="paper",
+                                          x=0.5, y=0.5, showarrow=False)
+{{ ... }}
+                    blank_fig.update_layout(height=100)
+                    st.plotly_chart(blank_fig, use_container_width=True)
+                
+            # --- RISK ASSESSMENT & AI REASONING ---
+            st.markdown("<h2 style='margin-top:30px;'>RISK ASSESSMENT & AI REASONING</h2>", unsafe_allow_html=True)
+                
+                # Check for Head & Shoulders (bearish reversal)
+                h_s_found = "Head & Shoulders" in patterns["Head & Shoulders"] and "Inverse" not in patterns["Head & Shoulders"] and "Inverted" not in patterns["Head & Shoulders"]
+                if h_s_found:
+                    st.markdown(f"✅ **Head & Shoulders:** {patterns['Head & Shoulders']}")
+                    # Visualize the pattern
+                    h_s_fig = visualize_head_shoulders(recent_df, "Head & Shoulders", 
+                                                    pattern_details["Head & Shoulders"], 
+                                                    is_detected=True)
+                    st.plotly_chart(h_s_fig, use_container_width=True)
+                    bearish_reversals_found = True
+                    
+                # Check for Double Top
+                double_top_found = "Double Top" in patterns["Double Pattern"] or ("Double" in patterns["Double Pattern"] and "Bearish" in patterns["Double Pattern"] and "Reversal" in patterns["Double Pattern"])
+                if double_top_found:
+                    st.markdown(f"✅ **Double Top:** {patterns['Double Pattern']}")
+                    # Visualize the pattern
+                    double_fig = visualize_double_pattern(recent_df, "Double Top", 
+                                                       pattern_details["Double Pattern"], 
+                                                       is_detected=True)
+                    st.plotly_chart(double_fig, use_container_width=True)
+                    bearish_reversals_found = True
+                    
+                # Check for Triple Top
+                triple_top_found = "Triple Top" in patterns["Triple Pattern"] or ("Triple" in patterns["Triple Pattern"] and "Bearish" in patterns["Triple Pattern"] and "Reversal" in patterns["Triple Pattern"])
+                if triple_top_found:
+                    st.markdown(f"✅ **Triple Top:** {patterns['Triple Pattern']}")
+                    # Visualize the pattern
+                    triple_fig = visualize_triple_pattern(recent_df, "Triple Top", 
+                                                       pattern_details["Triple Pattern"], 
+                                                       is_detected=True)
+                    st.plotly_chart(triple_fig, use_container_width=True)
+                    bearish_reversals_found = True
+                    
+                # Check for Rising Wedge (bearish reversal)
+                rising_wedge_reversal_found = "Rising Wedge" in patterns["Wedge Pattern"] and "Reversal" in patterns["Wedge Pattern"]
+                if rising_wedge_reversal_found:
+                    st.markdown(f"✅ **Rising Wedge:** {patterns['Wedge Pattern']}")
+                    # Visualize the pattern
+                    wedge_fig = visualize_wedge(recent_df, "Rising Wedge (Bearish Reversal)", 
+                                              pattern_details["Wedge Pattern"], 
+                                              is_detected=True)
+                    st.plotly_chart(wedge_fig, use_container_width=True)
+                    bearish_reversals_found = True
+                    
+                if not bearish_reversals_found:
+                    st.markdown("❌ No bearish reversal patterns detected")
+                    # Show a placeholder visualization to explain what patterns to look for
+                    blank_fig = go.Figure()
+                    blank_fig.add_annotation(text="Bearish Reversal Patterns: Head & Shoulders, Double Top, Triple Top, Rising Wedge", 
+                                          xref="paper", yref="paper",
+                                          x=0.5, y=0.5, showarrow=False)
+                    blank_fig.update_layout(height=100)
+                    st.plotly_chart(blank_fig, use_container_width=True)
+                
+                # --- Continuation Patterns ---
+                st.markdown("### Continuation Patterns")
+                
+                # --- Bullish Continuation ---
+                st.markdown("#### Bullish Continuations")
+                bullish_continuations_found = False
+                
+                # Check for Ascending Triangle
+                bullish_triangle_found = "Bullish Triangle" in patterns["Triangle Pattern"] or "Ascending Triangle" in patterns["Triangle Pattern"]
+                if bullish_triangle_found:
+                    st.markdown(f"✅ **Bullish Triangle:** {patterns['Triangle Pattern']}")
+                    # Visualize the pattern
+                    triangle_fig = visualize_triangle(recent_df, "Bullish Triangle (Continuation)", 
+                                                    pattern_details["Triangle Pattern"], 
+                                                    is_detected=True)
+                    st.plotly_chart(triangle_fig, use_container_width=True)
+                    bullish_continuations_found = True
+                    
+                # Check for Bullish Flag
+                bullish_flag_found = "Bullish Flag" in patterns["Flag Pattern"]
+                if bullish_flag_found:
+                    st.markdown(f"✅ **Bullish Flag:** {patterns['Flag Pattern']}")
+                    # Visualize the pattern
+                    flag_fig = visualize_flag_pennant(recent_df, "Bullish Flag (Continuation)", 
+                                                    pattern_details["Flag Pattern"], 
+                                                    is_detected=True)
+                    st.plotly_chart(flag_fig, use_container_width=True)
+                    bullish_continuations_found = True
+                    
+                # Check for Bullish Pennant
+                bullish_pennant_found = "Bullish Pennant" in patterns["Pennant Pattern"]
+                if bullish_pennant_found:
+                    st.markdown(f"✅ **Bullish Pennant:** {patterns['Pennant Pattern']}")
+                    # Visualize the pattern
+                    pennant_fig = visualize_flag_pennant(recent_df, "Bullish Pennant (Continuation)", 
+                                                      pattern_details["Pennant Pattern"], 
+                                                      is_detected=True)
+                    st.plotly_chart(pennant_fig, use_container_width=True)
+                    bullish_continuations_found = True
+                    
+                # Check for Falling Wedge (continuation)
+                falling_wedge_continuation_found = "Falling Wedge" in patterns["Wedge Pattern"] and "Continuation" in patterns["Wedge Pattern"]
+                if falling_wedge_continuation_found:
+                    st.markdown(f"✅ **Falling Wedge:** {patterns['Wedge Pattern']}")
+                    # Visualize the pattern
+                    wedge_fig = visualize_wedge(recent_df, "Falling Wedge (Bullish Continuation)", 
+                                              pattern_details["Wedge Pattern"], 
+                                              is_detected=True)
+                    st.plotly_chart(wedge_fig, use_container_width=True)
+                    bullish_continuations_found = True
+                    
+                if not bullish_continuations_found:
+                    st.markdown("❌ No bullish continuation patterns detected")
+                    # Show a placeholder visualization to explain what patterns to look for
+                    blank_fig = go.Figure()
+                    blank_fig.add_annotation(text="Bullish Continuation Patterns: Bullish Triangle, Bullish Flag, Bullish Pennant, Falling Wedge", 
+                                          xref="paper", yref="paper",
+                                          x=0.5, y=0.5, showarrow=False)
+                    blank_fig.update_layout(height=100)
+                    st.plotly_chart(blank_fig, use_container_width=True)
+                
+                # --- Bearish Continuation ---
+                st.markdown("#### Bearish Continuations")
+                bearish_continuations_found = False
+                
+                # Check for Descending Triangle
+                bearish_triangle_found = "Bearish Triangle" in patterns["Triangle Pattern"] or "Descending Triangle" in patterns["Triangle Pattern"]
+                if bearish_triangle_found:
+                    st.markdown(f"✅ **Bearish Triangle:** {patterns['Triangle Pattern']}")
+                    # Visualize the pattern
+                    triangle_fig = visualize_triangle(recent_df, "Bearish Triangle (Continuation)", 
+                                                     pattern_details["Triangle Pattern"], 
+                                                     is_detected=True)
+                    st.plotly_chart(triangle_fig, use_container_width=True)
+                    bearish_continuations_found = True
+                    
+                # Check for Bearish Flag
+                bearish_flag_found = "Bearish Flag" in patterns["Flag Pattern"]
+                if bearish_flag_found:
+                    st.markdown(f"✅ **Bearish Flag:** {patterns['Flag Pattern']}")
+                    # Visualize the pattern
+                    flag_fig = visualize_flag_pennant(recent_df, "Bearish Flag (Continuation)", 
+                                                     pattern_details["Flag Pattern"], 
+                                                     is_detected=True)
+                    st.plotly_chart(flag_fig, use_container_width=True)
+                    bearish_continuations_found = True
+                    
+                # Check for Bearish Pennant
+                bearish_pennant_found = "Bearish Pennant" in patterns["Pennant Pattern"]
+                if bearish_pennant_found:
+                    st.markdown(f"✅ **Bearish Pennant:** {patterns['Pennant Pattern']}")
+                    # Visualize the pattern
+                    pennant_fig = visualize_flag_pennant(recent_df, "Bearish Pennant (Continuation)", 
+                                                       pattern_details["Pennant Pattern"], 
+                                                       is_detected=True)
+                    st.plotly_chart(pennant_fig, use_container_width=True)
+                    bearish_continuations_found = True
+                    
+                # Check for Rising Wedge (continuation)
+                rising_wedge_continuation_found = "Rising Wedge" in patterns["Wedge Pattern"] and "Continuation" in patterns["Wedge Pattern"]
+                if rising_wedge_continuation_found:
+                    st.markdown(f"✅ **Rising Wedge:** {patterns['Wedge Pattern']}")
+                    # Visualize the pattern
+                    wedge_fig = visualize_wedge(recent_df, "Rising Wedge (Bearish Continuation)", 
+                                               pattern_details["Wedge Pattern"], 
+                                               is_detected=True)
+                    st.plotly_chart(wedge_fig, use_container_width=True)
+                    bearish_continuations_found = True
+                    
+                if not bearish_continuations_found:
+                    st.markdown("❌ No bearish continuation patterns detected")
+                    # Show a placeholder visualization to explain what patterns to look for
+                    blank_fig = go.Figure()
+                    blank_fig.add_annotation(text="Bearish Continuation Patterns: Bearish Triangle, Bearish Flag, Bearish Pennant, Rising Wedge", 
+                                           xref="paper", yref="paper",
+                                           x=0.5, y=0.5, showarrow=False)
+                    blank_fig.update_layout(height=100)
+                    st.plotly_chart(blank_fig, use_container_width=True)
+                    
+                # Add a pattern reference image at the bottom for user education
+                st.markdown("### Pattern Reference Chart")
+                st.markdown("Below is a reference chart showing all the patterns we detect:")
+                st.markdown("""
+                <div style="text-align: center; margin-top: 20px;">
+                <img src="https://www.investopedia.com/thmb/4wWzQHUrgC_a6GoH7nOQKrj-Q_I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chart-patterns-5c1db6c5c9e77c00017bb775.png" 
+                     alt="Technical Chart Patterns Reference" width="100%">
+                <p style="font-style: italic; margin-top: 5px;">Chart patterns and their typical implications for price movement</p>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            # --- RISK ASSESSMENT & AI REASONING ---
+            st.markdown("<h2 style='margin-top:30px;'>RISK ASSESSMENT & AI REASONING</h2>", unsafe_allow_html=True)
+            
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                # AI Analysis
+                st.subheader("AI Market Analysis")
+                st.write(result.get("llm_opinion", "No analysis available"))  # Full AI analysis
+            
+            with col2:
+                # Risk factors
+                st.subheader("Risk Factors")
+                
+                # Calculate volatility
+                if ohlcv is not None and not isinstance(ohlcv, str) and not ohlcv.empty:
+                    volatility = ohlcv["Close"].tail(14).pct_change().std() * 100
+                    avg_volume = ohlcv["Volume"].tail(5).mean()
+                    recent_volume = ohlcv["Volume"].tail(1).values[0]
+                    rsi_signal = "Overbought" if "Overbought" in result.get("indicator_summary", "") else "Oversold" if "Oversold" in result.get("indicator_summary", "") else "Neutral"
+                
+                    # Show risk factors
+                    st.markdown(f"🎯 **Volatility:** {volatility:.2f}% daily")
+                    st.markdown(f"📊 **Volume:** {recent_volume:.0f} ({recent_volume/avg_volume:.1f}x avg)")
+                    st.markdown(f"📈 **RSI Signal:** {rsi_signal}")
+                    
+                    # Options-specific risk
+                    st.markdown(f"⏳ **Theta Risk:** {expiry} expiry")
+                    
+                    # Create a risk meter
+                    risk_level = 3  # Default moderate
+                    if volatility > 5:
+                        risk_level = 5  # High
+                    elif volatility < 2:
+                        risk_level = 1  # Low
+                    
+                    st.markdown("#### Risk Meter")
+                    risk_meter = ["🟢", "🟢", "🟡", "🟡", "🔴"]
+                    st.markdown("".join(risk_meter[0:risk_level]) + "⚪"*(5-risk_level))
+                    st.caption(f"Level {risk_level}/5: {'Low' if risk_level <= 2 else 'Moderate' if risk_level <= 3 else 'High'} risk trade")
+                else:
+                    st.warning("No data available for risk assessment")
+
+            # Detailed trace is available as an expandable section
+            with st.expander("View Analysis Process Trace"):
+                trace = result.get("trace", [])
+                if trace:
+                    for step in trace:
+                        st.markdown(f"- {step['step']} ({step['persona']} | {step['role']}) @ {step['timestamp']}<br> &nbsp;&nbsp;&nbsp;{step['summary']}", unsafe_allow_html=True)
+                else:
+                    st.info("No trace information available.")
+
+            # Display pattern analysis
+            st.header("Pattern Analysis")
+
+            ohlcv = result.get("ohlcv")
+            if ohlcv is not None and not isinstance(ohlcv, str) and not ohlcv.empty:
+                # Focus on last 100 bars for clarity
+                plot_df = ohlcv.copy().tail(100).reset_index(drop=True)
+
+                # --- Double Pattern ---
+                st.subheader("Double Pattern")
+                double_signal = result.get("double_pattern_signal", "No pattern")
+                double_details = result.get("double_pattern_details", {})
+                # Find local peaks/troughs
+                plot_df["local_max"] = plot_df["Close"].iloc[plot_df["Close"].argrelextrema(np.greater_equal, order=3)[0]] if hasattr(plot_df["Close"], 'argrelextrema') else None
+                plot_df["local_min"] = plot_df["Close"].iloc[plot_df["Close"].argrelextrema(np.less_equal, order=3)[0]] if hasattr(plot_df["Close"], 'argrelextrema') else None
+
+                # Plot price and peaks/troughs
+                fig = go.Figure()
+                fig.add_trace(go.Scatter(x=plot_df["Datetime"], y=plot_df["Close"], mode="lines", name="Close"))
+                # Mark peaks
+                peaks = plot_df.dropna(subset=["local_max"])
+                if not peaks.empty:
+                    fig.add_trace(go.Scatter(x=peaks["Datetime"], y=peaks["local_max"], mode="markers", marker=dict(color="red", size=10), name="Peaks"))
+                # Mark troughs
+                troughs = plot_df.dropna(subset=["local_min"])
+                if not troughs.empty:
+                    fig.add_trace(go.Scatter(x=troughs["Datetime"], y=troughs["local_min"], mode="markers", marker=dict(color="blue", size=10), name="Troughs"))
+                fig.update_layout(title="Double Pattern - Peaks and Troughs", xaxis_title="Date/Time", yaxis_title="Price")
+                st.plotly_chart(fig, use_container_width=True)
+                st.write(f"**Result:** {double_signal}")
+                # Explanation
+                if double_signal.startswith("⚠️"):
+                    st.caption("No two peaks or troughs within 3% of each other and proper neckline found in the last 100 bars.")
+                elif double_signal.startswith("📉") or double_signal.startswith("📈"):
+                    st.caption("Pattern detected based on peaks/troughs and neckline criteria.")
+
+                # --- Triple Pattern ---
+                st.subheader("Triple Pattern")
+                triple_signal = result.get("triple_pattern_signal", "No pattern")
+                triple_details = result.get("triple_pattern_details", {})
+                # Find local peaks/troughs
+                plot_df["local_max"] = plot_df["Close"].iloc[plot_df["Close"].argrelextrema(np.greater_equal, order=3)[0]] if hasattr(plot_df["Close"], 'argrelextrema') else None
+                plot_df["local_min"] = plot_df["Close"].iloc[plot_df["Close"].argrelextrema(np.less_equal, order=3)[0]] if hasattr(plot_df["Close"], 'argrelextrema') else None
+                # Plot price and peaks/troughs
+                fig2 = go.Figure()
+                fig2.add_trace(go.Scatter(x=plot_df["Datetime"], y=plot_df["Close"], mode="lines", name="Close"))
+                # Mark peaks
+                peaks2 = plot_df.dropna(subset=["local_max"])
+                if not peaks2.empty:
+                    fig2.add_trace(go.Scatter(x=peaks2["Datetime"], y=peaks2["local_max"], mode="markers", marker=dict(color="red", size=10), name="Peaks"))
+                # Mark troughs
+                troughs2 = plot_df.dropna(subset=["local_min"])
+                if not troughs2.empty:
+                    fig2.add_trace(go.Scatter(x=troughs2["Datetime"], y=troughs2["local_min"], mode="markers", marker=dict(color="blue", size=10), name="Troughs"))
+                fig2.update_layout(title="Triple Pattern - Peaks and Troughs", xaxis_title="Date/Time", yaxis_title="Price")
+                st.plotly_chart(fig2, use_container_width=True)
+                st.write(f"**Result:** {triple_signal}")
+                # Explanation
+                if triple_signal.startswith("⚠️"):
+                    st.caption("No three peaks or troughs within 2% of each other and proper neckline found in the last 100 bars.")
+                elif triple_signal.startswith("📉") or triple_signal.startswith("📈"):
+                    st.caption("Pattern detected based on peaks/troughs and neckline criteria.")
+            else:
+                st.info("No price data available for pattern visualization.")
+
+            # Head & Shoulders, Wedge, etc. can be added similarly
+
+
+        except Exception as e:
+            st.error(f"Error analyzing stock: {str(e)}")

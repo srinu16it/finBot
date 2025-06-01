@@ -498,3 +498,3688 @@ Triangle: ⚠️ No clear triangle pattern
 
 
 Make a judgment: BULLISH, BEARISH, or NEUTRAL, and explain why.
+
+
+[2025-05-20T06:48:37.848105] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $208.76
+Daily Change: 0.30%
+Weekly Change: 0.13%
+
+===== VOLUME =====
+Latest Volume: 4045825
+Volume Ratio to 10-day Average: 0.85x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.87 / 209.52 
+    → Bearish crossover
+    
+RSI: 38.82 
+    → Neutral
+    
+MACD: -0.3485, Signal: 0.0661 
+    → Bearish crossover
+    
+VWAP: 205.13 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T06:51:01.280806] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $208.76
+Daily Change: 0.30%
+Weekly Change: 0.13%
+
+===== VOLUME =====
+Latest Volume: 4045825
+Volume Ratio to 10-day Average: 0.85x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.87 / 209.52 
+    → Bearish crossover
+    
+RSI: 38.82 
+    → Neutral
+    
+MACD: -0.3485, Signal: 0.0661 
+    → Bearish crossover
+    
+VWAP: 205.12 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T07:04:57.385801] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $208.76
+Daily Change: 0.30%
+Weekly Change: 0.13%
+
+===== VOLUME =====
+Latest Volume: 4045825
+Volume Ratio to 10-day Average: 0.85x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.87 / 209.52 
+    → Bearish crossover
+    
+RSI: 38.82 
+    → Neutral
+    
+MACD: -0.3485, Signal: 0.0661 
+    → Bearish crossover
+    
+VWAP: 205.13 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T10:45:07.938118] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $207.09
+Daily Change: -0.26%
+Weekly Change: -0.50%
+
+===== VOLUME =====
+Latest Volume: 746402
+Volume Ratio to 10-day Average: 0.15x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.19 / 209.02 
+    → Bearish crossover
+    
+RSI: 33.17 
+    → Neutral
+    
+MACD: -0.5925, Signal: -0.2188 
+    → Bearish crossover
+    
+VWAP: 205.17 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T10:46:56.492848] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $320.64
+Daily Change: -0.09%
+Weekly Change: 2.23%
+
+===== VOLUME =====
+Latest Volume: 1145931
+Volume Ratio to 10-day Average: 0.14x
+
+===== KEY INDICATORS =====
+EMA 9/21: 313.00 / 306.43 
+    → Bullish crossover
+    
+RSI: 93.31 
+    → Overbought
+    
+MACD: 2.8687, Signal: -2.2545 
+    → Bullish crossover
+    
+VWAP: 322.05 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T10:49:58.864048] SYMBOL: NVDA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: NVDA
+
+===== PRICE DATA =====
+Latest Close: $134.05
+Daily Change: 0.21%
+Weekly Change: -0.79%
+
+===== VOLUME =====
+Latest Volume: 4994954
+Volume Ratio to 10-day Average: 0.20x
+
+===== KEY INDICATORS =====
+EMA 9/21: 134.45 / 134.18 
+    → Bullish crossover
+    
+RSI: 44.74 
+    → Neutral
+    
+MACD: 0.8378, Signal: 1.4061 
+    → Bearish crossover
+    
+VWAP: 116.35 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T10:56:51.489689] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $208.21
+Daily Change: 0.28%
+Weekly Change: 0.04%
+
+===== VOLUME =====
+Latest Volume: 1214088
+Volume Ratio to 10-day Average: 0.24x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.41 / 209.12 
+    → Bearish crossover
+    
+RSI: 38.08 
+    → Neutral
+    
+MACD: -0.5031, Signal: -0.2009 
+    → Bearish crossover
+    
+VWAP: 205.17 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T11:00:02.133732] SYMBOL: NVDA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: NVDA
+
+===== PRICE DATA =====
+Latest Close: $134.09
+Daily Change: 0.24%
+Weekly Change: -0.76%
+
+===== VOLUME =====
+Latest Volume: 9343574
+Volume Ratio to 10-day Average: 0.37x
+
+===== KEY INDICATORS =====
+EMA 9/21: 134.46 / 134.19 
+    → Bullish crossover
+    
+RSI: 45.05 
+    → Neutral
+    
+MACD: 0.8410, Signal: 1.4067 
+    → Bearish crossover
+    
+VWAP: 116.37 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T11:00:48.268830] SYMBOL: NVDA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: NVDA
+
+===== PRICE DATA =====
+Latest Close: $134.11
+Daily Change: 0.25%
+Weekly Change: -0.75%
+
+===== VOLUME =====
+Latest Volume: 9343574
+Volume Ratio to 10-day Average: 0.37x
+
+===== KEY INDICATORS =====
+EMA 9/21: 134.46 / 134.19 
+    → Bullish crossover
+    
+RSI: 45.20 
+    → Neutral
+    
+MACD: 0.8426, Signal: 1.4070 
+    → Bearish crossover
+    
+VWAP: 116.37 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T11:05:28.346281] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $319.33
+Daily Change: -0.50%
+Weekly Change: 1.82%
+
+===== VOLUME =====
+Latest Volume: 2543873
+Volume Ratio to 10-day Average: 0.31x
+
+===== KEY INDICATORS =====
+EMA 9/21: 312.73 / 306.31 
+    → Bullish crossover
+    
+RSI: 91.00 
+    → Overbought
+    
+MACD: 2.7640, Signal: -2.2755 
+    → Bullish crossover
+    
+VWAP: 322.04 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T11:16:40.990038] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $207.71
+Daily Change: 0.04%
+Weekly Change: -0.20%
+
+===== VOLUME =====
+Latest Volume: 3518025
+Volume Ratio to 10-day Average: 0.65x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.31 / 209.08 
+    → Bearish crossover
+    
+RSI: 35.27 
+    → Neutral
+    
+MACD: -0.5430, Signal: -0.2089 
+    → Bearish crossover
+    
+VWAP: 205.18 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T11:22:17.543328] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $348.67
+Daily Change: 0.69%
+Weekly Change: 2.15%
+
+===== VOLUME =====
+Latest Volume: 12391845
+Volume Ratio to 10-day Average: 0.85x
+
+===== KEY INDICATORS =====
+EMA 9/21: 344.46 / 342.58 
+    → Bullish crossover
+    
+RSI: 51.63 
+    → Neutral
+    
+MACD: 2.9831, Signal: 3.6164 
+    → Bearish crossover
+    
+VWAP: 292.37 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T11:38:20.664067] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $207.93
+Daily Change: 0.06%
+Weekly Change: -0.40%
+
+===== VOLUME =====
+Latest Volume: 306108
+Volume Ratio to 10-day Average: 0.08x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.25 / 208.98 
+    → Bearish crossover
+    
+RSI: 35.62 
+    → Neutral
+    
+MACD: -0.5488, Signal: -0.2756 
+    → Bearish crossover
+    
+VWAP: 205.18 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T11:39:21.276216] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $207.90
+Daily Change: 0.04%
+Weekly Change: -0.41%
+
+===== VOLUME =====
+Latest Volume: 392878
+Volume Ratio to 10-day Average: 0.10x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.24 / 208.98 
+    → Bearish crossover
+    
+RSI: 35.48 
+    → Neutral
+    
+MACD: -0.5508, Signal: -0.2760 
+    → Bearish crossover
+    
+VWAP: 205.18 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T11:48:04.752405] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $207.94
+Daily Change: 0.06%
+Weekly Change: -0.39%
+
+===== VOLUME =====
+Latest Volume: 737354
+Volume Ratio to 10-day Average: 0.18x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.25 / 208.98 
+    → Bearish crossover
+    
+RSI: 35.72 
+    → Neutral
+    
+MACD: -0.5475, Signal: -0.2754 
+    → Bearish crossover
+    
+VWAP: 205.18 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T11:49:19.962602] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $207.87
+Daily Change: 0.03%
+Weekly Change: -0.43%
+
+===== VOLUME =====
+Latest Volume: 763011
+Volume Ratio to 10-day Average: 0.19x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.24 / 208.97 
+    → Bearish crossover
+    
+RSI: 35.30 
+    → Neutral
+    
+MACD: -0.5532, Signal: -0.2765 
+    → Bearish crossover
+    
+VWAP: 205.18 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T12:30:38.088500] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $207.32
+Daily Change: -0.03%
+Weekly Change: -0.25%
+
+===== VOLUME =====
+Latest Volume: 0
+Volume Ratio to 10-day Average: 0.00x
+
+===== KEY INDICATORS =====
+EMA 9/21: 207.98 / 208.78 
+    → Bearish crossover
+    
+RSI: 30.35 
+    → Neutral
+    
+MACD: -0.6351, Signal: -0.3545 
+    → Bearish crossover
+    
+VWAP: 205.19 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T12:32:30.323674] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $207.28
+Daily Change: -0.72%
+Weekly Change: -2.38%
+
+===== VOLUME =====
+Latest Volume: 20709761
+Volume Ratio to 10-day Average: 0.43x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.07 / 206.63 
+    → Bullish crossover
+    
+RSI: 43.89 
+    → Neutral
+    
+MACD: 0.6863, Signal: -0.3001 
+    → Bullish crossover
+    
+VWAP: 218.12 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T12:34:45.404027] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $207.10
+Daily Change: -0.80%
+Weekly Change: -2.46%
+
+===== VOLUME =====
+Latest Volume: 20899465
+Volume Ratio to 10-day Average: 0.43x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.03 / 206.61 
+    → Bullish crossover
+    
+RSI: 43.70 
+    → Neutral
+    
+MACD: 0.6720, Signal: -0.3029 
+    → Bullish crossover
+    
+VWAP: 218.12 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T12:37:37.317102] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $207.10
+Daily Change: -0.80%
+Weekly Change: -2.46%
+
+===== VOLUME =====
+Latest Volume: 21070804
+Volume Ratio to 10-day Average: 0.43x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.03 / 206.61 
+    → Bullish crossover
+    
+RSI: 43.70 
+    → Neutral
+    
+MACD: 0.6720, Signal: -0.3029 
+    → Bullish crossover
+    
+VWAP: 218.11 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T12:39:32.884463] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $207.15
+Daily Change: -0.78%
+Weekly Change: -2.44%
+
+===== VOLUME =====
+Latest Volume: 21139688
+Volume Ratio to 10-day Average: 0.43x
+
+===== KEY INDICATORS =====
+EMA 9/21: 208.04 / 206.61 
+    → Bullish crossover
+    
+RSI: 43.75 
+    → Neutral
+    
+MACD: 0.6760, Signal: -0.3021 
+    → Bullish crossover
+    
+VWAP: 218.11 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T12:41:30.000065] SYMBOL: NVDA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: NVDA
+
+===== PRICE DATA =====
+Latest Close: $134.19
+Daily Change: -1.02%
+Weekly Change: -0.85%
+
+===== VOLUME =====
+Latest Volume: 103367005
+Volume Ratio to 10-day Average: 0.49x
+
+===== KEY INDICATORS =====
+EMA 9/21: 129.60 / 121.95 
+    → Bullish crossover
+    
+RSI: 88.98 
+    → Overbought
+    
+MACD: 6.7768, Signal: 4.4793 
+    → Bullish crossover
+    
+VWAP: 119.97 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T12:42:17.133615] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $322.73
+Daily Change: 2.17%
+Weekly Change: 4.78%
+
+===== VOLUME =====
+Latest Volume: 30095660
+Volume Ratio to 10-day Average: 0.72x
+
+===== KEY INDICATORS =====
+EMA 9/21: 330.10 / 375.46 
+    → Bearish crossover
+    
+RSI: 27.28 
+    → Oversold
+    
+MACD: -47.5662, Signal: -43.0017 
+    → Bearish crossover
+    
+VWAP: 407.72 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T12:44:56.760511] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $323.01
+Daily Change: 2.25%
+Weekly Change: 4.87%
+
+===== VOLUME =====
+Latest Volume: 30245913
+Volume Ratio to 10-day Average: 0.72x
+
+===== KEY INDICATORS =====
+EMA 9/21: 330.15 / 375.48 
+    → Bearish crossover
+    
+RSI: 27.39 
+    → Oversold
+    
+MACD: -47.5444, Signal: -42.9973 
+    → Bearish crossover
+    
+VWAP: 407.71 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T12:52:29.077281] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $206.87
+Daily Change: -0.91%
+Weekly Change: -2.57%
+
+===== VOLUME =====
+Latest Volume: 21867957
+Volume Ratio to 10-day Average: 0.45x
+
+===== KEY INDICATORS =====
+EMA 9/21: 207.99 / 206.59 
+    → Bullish crossover
+    
+RSI: 43.45 
+    → Neutral
+    
+MACD: 0.6536, Signal: -0.3066 
+    → Bullish crossover
+    
+VWAP: 218.11 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T12:53:11.962278] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $323.90
+Daily Change: 2.53%
+Weekly Change: 5.16%
+
+===== VOLUME =====
+Latest Volume: 31013690
+Volume Ratio to 10-day Average: 0.74x
+
+===== KEY INDICATORS =====
+EMA 9/21: 330.33 / 375.56 
+    → Bearish crossover
+    
+RSI: 27.71 
+    → Oversold
+    
+MACD: -47.4736, Signal: -42.9832 
+    → Bearish crossover
+    
+VWAP: 407.66 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T14:14:09.426830] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $344.55
+Daily Change: 0.72%
+Weekly Change: -0.90%
+
+===== VOLUME =====
+Latest Volume: 113888333
+Volume Ratio to 10-day Average: 1.05x
+
+===== KEY INDICATORS =====
+EMA 9/21: 329.75 / 306.31 
+    → Bullish crossover
+    
+RSI: 77.15 
+    → Overbought
+    
+MACD: 21.5445, Signal: 15.5150 
+    → Bullish crossover
+    
+VWAP: 303.55 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-20T14:14:40.628607] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $321.07
+Daily Change: 1.64%
+Weekly Change: 4.24%
+
+===== VOLUME =====
+Latest Volume: 36677668
+Volume Ratio to 10-day Average: 0.86x
+
+===== KEY INDICATORS =====
+EMA 9/21: 329.77 / 375.30 
+    → Bearish crossover
+    
+RSI: 26.66 
+    → Oversold
+    
+MACD: -47.6994, Signal: -43.0284 
+    → Bearish crossover
+    
+VWAP: 407.11 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T09:39:13.917231] SYMBOL: DASH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: DASH
+
+===== PRICE DATA =====
+Latest Close: $208.76
+Daily Change: 1.74%
+Weekly Change: 5.91%
+
+===== VOLUME =====
+Latest Volume: 1343439
+Volume Ratio to 10-day Average: 0.35x
+
+===== KEY INDICATORS =====
+EMA 9/21: 200.11 / 194.59 
+    → Bullish crossover
+    
+RSI: 58.80 
+    → Neutral
+    
+MACD: 5.0016, Signal: 3.3367 
+    → Bullish crossover
+    
+VWAP: 187.80 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T09:44:29.249298] SYMBOL: UBER
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UBER
+
+===== PRICE DATA =====
+Latest Close: $89.12
+Daily Change: -2.99%
+Weekly Change: -1.15%
+
+===== VOLUME =====
+Latest Volume: 6926771
+Volume Ratio to 10-day Average: 0.29x
+
+===== KEY INDICATORS =====
+EMA 9/21: 89.36 / 85.39 
+    → Bullish crossover
+    
+RSI: 66.40 
+    → Neutral
+    
+MACD: 4.2340, Signal: 3.9308 
+    → Bullish crossover
+    
+VWAP: 73.77 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T09:45:10.913621] SYMBOL: HOOD
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: HOOD
+
+===== PRICE DATA =====
+Latest Close: $64.92
+Daily Change: 0.02%
+Weekly Change: 6.99%
+
+===== VOLUME =====
+Latest Volume: 7385934
+Volume Ratio to 10-day Average: 0.20x
+
+===== KEY INDICATORS =====
+EMA 9/21: 61.05 / 55.61 
+    → Bullish crossover
+    
+RSI: 89.51 
+    → Overbought
+    
+MACD: 5.2875, Signal: 4.1929 
+    → Bullish crossover
+    
+VWAP: 46.68 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:12:09.628287] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $308.15
+Daily Change: -4.18%
+Weekly Change: 12.32%
+
+===== VOLUME =====
+Latest Volume: 22711531
+Volume Ratio to 10-day Average: 0.51x
+
+===== KEY INDICATORS =====
+EMA 9/21: 325.52 / 369.24 
+    → Bearish crossover
+    
+RSI: 26.49 
+    → Oversold
+    
+MACD: -46.8461, Signal: -43.7882 
+    → Bearish crossover
+    
+VWAP: 404.13 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:16:01.570464] SYMBOL: NVDA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: NVDA
+
+===== PRICE DATA =====
+Latest Close: $135.50
+Daily Change: 0.83%
+Weekly Change: 0.50%
+
+===== VOLUME =====
+Latest Volume: 65132120
+Volume Ratio to 10-day Average: 0.32x
+
+===== KEY INDICATORS =====
+EMA 9/21: 130.81 / 123.20 
+    → Bullish crossover
+    
+RSI: 88.97 
+    → Overbought
+    
+MACD: 6.9571, Signal: 4.9774 
+    → Bullish crossover
+    
+VWAP: 119.95 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:17:41.272241] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $344.96
+Daily Change: 0.33%
+Weekly Change: 0.63%
+
+===== VOLUME =====
+Latest Volume: 36207013
+Volume Ratio to 10-day Average: 0.34x
+
+===== KEY INDICATORS =====
+EMA 9/21: 332.68 / 309.76 
+    → Bullish crossover
+    
+RSI: 78.35 
+    → Overbought
+    
+MACD: 21.7085, Signal: 16.7491 
+    → Bullish crossover
+    
+VWAP: 302.92 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:20:16.073617] SYMBOL: SMCI
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: SMCI
+
+===== PRICE DATA =====
+Latest Close: $43.44
+Daily Change: 1.55%
+Weekly Change: -1.19%
+
+===== VOLUME =====
+Latest Volume: 21632751
+Volume Ratio to 10-day Average: 0.31x
+
+===== KEY INDICATORS =====
+EMA 9/21: 41.48 / 38.45 
+    → Bullish crossover
+    
+RSI: 71.82 
+    → Overbought
+    
+MACD: 2.5106, Signal: 1.3379 
+    → Bullish crossover
+    
+VWAP: 40.47 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:42:49.877626] SYMBOL: NVDA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: NVDA
+
+===== PRICE DATA =====
+Latest Close: $136.31
+Daily Change: 1.44%
+Weekly Change: 1.10%
+
+===== VOLUME =====
+Latest Volume: 79091075
+Volume Ratio to 10-day Average: 0.39x
+
+===== KEY INDICATORS =====
+EMA 9/21: 130.97 / 123.27 
+    → Bullish crossover
+    
+RSI: 89.26 
+    → Overbought
+    
+MACD: 7.0216, Signal: 4.9904 
+    → Bullish crossover
+    
+VWAP: 119.96 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:43:23.777109] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $344.13
+Daily Change: 0.09%
+Weekly Change: 0.38%
+
+===== VOLUME =====
+Latest Volume: 41207949
+Volume Ratio to 10-day Average: 0.38x
+
+===== KEY INDICATORS =====
+EMA 9/21: 332.51 / 309.69 
+    → Bullish crossover
+    
+RSI: 78.19 
+    → Overbought
+    
+MACD: 21.6420, Signal: 16.7358 
+    → Bullish crossover
+    
+VWAP: 302.94 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:47:58.085616] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $344.21
+Daily Change: 0.11%
+Weekly Change: 0.41%
+
+===== VOLUME =====
+Latest Volume: 41728805
+Volume Ratio to 10-day Average: 0.39x
+
+===== KEY INDICATORS =====
+EMA 9/21: 332.52 / 309.69 
+    → Bullish crossover
+    
+RSI: 78.20 
+    → Overbought
+    
+MACD: 21.6483, Signal: 16.7371 
+    → Bullish crossover
+    
+VWAP: 302.94 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:48:36.242678] SYMBOL: SMCI
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: SMCI
+
+===== PRICE DATA =====
+Latest Close: $43.94
+Daily Change: 2.74%
+Weekly Change: -0.05%
+
+===== VOLUME =====
+Latest Volume: 25634347
+Volume Ratio to 10-day Average: 0.37x
+
+===== KEY INDICATORS =====
+EMA 9/21: 41.58 / 38.49 
+    → Bullish crossover
+    
+RSI: 72.39 
+    → Overbought
+    
+MACD: 2.5509, Signal: 1.3460 
+    → Bullish crossover
+    
+VWAP: 40.48 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:51:56.817315] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $344.44
+Daily Change: 0.18%
+Weekly Change: 0.47%
+
+===== VOLUME =====
+Latest Volume: 42196899
+Volume Ratio to 10-day Average: 0.39x
+
+===== KEY INDICATORS =====
+EMA 9/21: 332.57 / 309.72 
+    → Bullish crossover
+    
+RSI: 78.25 
+    → Overbought
+    
+MACD: 21.6667, Signal: 16.7407 
+    → Bullish crossover
+    
+VWAP: 302.94 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:52:59.938204] SYMBOL: DASH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: DASH
+
+===== PRICE DATA =====
+Latest Close: $208.76
+Daily Change: 1.75%
+Weekly Change: 5.92%
+
+===== VOLUME =====
+Latest Volume: 1936640
+Volume Ratio to 10-day Average: 0.50x
+
+===== KEY INDICATORS =====
+EMA 9/21: 200.12 / 194.59 
+    → Bullish crossover
+    
+RSI: 58.81 
+    → Neutral
+    
+MACD: 5.0024, Signal: 3.3369 
+    → Bullish crossover
+    
+VWAP: 187.82 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:56:51.122313] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $307.50
+Daily Change: -4.38%
+Weekly Change: 12.08%
+
+===== VOLUME =====
+Latest Volume: 25770603
+Volume Ratio to 10-day Average: 0.57x
+
+===== KEY INDICATORS =====
+EMA 9/21: 325.39 / 369.18 
+    → Bearish crossover
+    
+RSI: 26.40 
+    → Oversold
+    
+MACD: -46.8979, Signal: -43.7986 
+    → Bearish crossover
+    
+VWAP: 403.82 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:59:18.219303] SYMBOL: META
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: META
+
+===== PRICE DATA =====
+Latest Close: $642.48
+Daily Change: 0.84%
+Weekly Change: -0.22%
+
+===== VOLUME =====
+Latest Volume: 4208944
+Volume Ratio to 10-day Average: 0.32x
+
+===== KEY INDICATORS =====
+EMA 9/21: 632.74 / 608.33 
+    → Bullish crossover
+    
+RSI: 73.43 
+    → Overbought
+    
+MACD: 22.9155, Signal: 18.1016 
+    → Bullish crossover
+    
+VWAP: 609.54 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T10:59:54.869548] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $345.10
+Daily Change: 0.37%
+Weekly Change: 0.67%
+
+===== VOLUME =====
+Latest Volume: 43454646
+Volume Ratio to 10-day Average: 0.40x
+
+===== KEY INDICATORS =====
+EMA 9/21: 332.70 / 309.78 
+    → Bullish crossover
+    
+RSI: 78.37 
+    → Overbought
+    
+MACD: 21.7194, Signal: 16.7513 
+    → Bullish crossover
+    
+VWAP: 302.95 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T11:14:10.686821] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $346.12
+Daily Change: 0.67%
+Weekly Change: 0.96%
+
+===== VOLUME =====
+Latest Volume: 46050380
+Volume Ratio to 10-day Average: 0.43x
+
+===== KEY INDICATORS =====
+EMA 9/21: 332.91 / 309.87 
+    → Bullish crossover
+    
+RSI: 78.57 
+    → Overbought
+    
+MACD: 21.8011, Signal: 16.7676 
+    → Bullish crossover
+    
+VWAP: 302.96 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T11:16:01.507678] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $205.87
+Daily Change: -0.48%
+Weekly Change: -2.64%
+
+===== VOLUME =====
+Latest Volume: 16062649
+Volume Ratio to 10-day Average: 0.35x
+
+===== KEY INDICATORS =====
+EMA 9/21: 207.56 / 206.52 
+    → Bullish crossover
+    
+RSI: 41.26 
+    → Neutral
+    
+MACD: 0.4814, Signal: -0.1496 
+    → Bullish crossover
+    
+VWAP: 217.88 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T11:16:58.260360] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $346.20
+Daily Change: 0.69%
+Weekly Change: 0.99%
+
+===== VOLUME =====
+Latest Volume: 46575654
+Volume Ratio to 10-day Average: 0.43x
+
+===== KEY INDICATORS =====
+EMA 9/21: 332.92 / 309.88 
+    → Bullish crossover
+    
+RSI: 78.58 
+    → Overbought
+    
+MACD: 21.8075, Signal: 16.7689 
+    → Bullish crossover
+    
+VWAP: 302.96 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T13:02:49.934712] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $337.79
+Daily Change: -1.75%
+Weekly Change: -1.47%
+
+===== VOLUME =====
+Latest Volume: 71583937
+Volume Ratio to 10-day Average: 0.65x
+
+===== KEY INDICATORS =====
+EMA 9/21: 331.24 / 309.11 
+    → Bullish crossover
+    
+RSI: 74.15 
+    → Overbought
+    
+MACD: 21.1362, Signal: 16.6346 
+    → Bullish crossover
+    
+VWAP: 303.02 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T13:03:36.201627] SYMBOL: DASH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: DASH
+
+===== PRICE DATA =====
+Latest Close: $205.77
+Daily Change: 0.29%
+Weekly Change: 4.40%
+
+===== VOLUME =====
+Latest Volume: 3142871
+Volume Ratio to 10-day Average: 0.78x
+
+===== KEY INDICATORS =====
+EMA 9/21: 199.52 / 194.32 
+    → Bullish crossover
+    
+RSI: 57.00 
+    → Neutral
+    
+MACD: 4.7635, Signal: 3.2891 
+    → Bullish crossover
+    
+VWAP: 187.86 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-21T13:04:16.804945] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $337.08
+Daily Change: -1.96%
+Weekly Change: -1.67%
+
+===== VOLUME =====
+Latest Volume: 71926041
+Volume Ratio to 10-day Average: 0.65x
+
+===== KEY INDICATORS =====
+EMA 9/21: 331.10 / 309.05 
+    → Bullish crossover
+    
+RSI: 73.71 
+    → Overbought
+    
+MACD: 21.0796, Signal: 16.6233 
+    → Bullish crossover
+    
+VWAP: 303.02 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-28T13:08:15.382699] SYMBOL: DASH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: DASH
+
+===== PRICE DATA =====
+Latest Close: $206.29
+Daily Change: 0.68%
+Weekly Change: 0.74%
+
+===== VOLUME =====
+Latest Volume: 4385748
+Volume Ratio to 10-day Average: 1.01x
+
+===== KEY INDICATORS =====
+EMA 9/21: 202.64 / 197.55 
+    → Bullish crossover
+    
+RSI: 84.58 
+    → Overbought
+    
+MACD: 5.0801, Signal: 4.2470 
+    → Bullish crossover
+    
+VWAP: 188.69 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-28T13:09:49.224155] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $363.45
+Daily Change: 0.15%
+Weekly Change: 8.62%
+
+===== VOLUME =====
+Latest Volume: 60516083
+Volume Ratio to 10-day Average: 0.60x
+
+===== KEY INDICATORS =====
+EMA 9/21: 344.53 / 322.75 
+    → Bullish crossover
+    
+RSI: 82.42 
+    → Overbought
+    
+MACD: 22.1858, Signal: 19.3881 
+    → Bullish crossover
+    
+VWAP: 301.07 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-28T13:11:29.310548] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $299.58
+Daily Change: 1.55%
+Weekly Change: -1.12%
+
+===== VOLUME =====
+Latest Volume: 12238590
+Volume Ratio to 10-day Average: 0.27x
+
+===== KEY INDICATORS =====
+EMA 9/21: 308.24 / 345.96 
+    → Bearish crossover
+    
+RSI: 26.56 
+    → Oversold
+    
+MACD: -43.4387, Signal: -44.5916 
+    → Bullish crossover
+    
+VWAP: 392.65 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-28T13:13:26.294558] SYMBOL: NVDA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: NVDA
+
+===== PRICE DATA =====
+Latest Close: $135.50
+Daily Change: 3.21%
+Weekly Change: 0.83%
+
+===== VOLUME =====
+Latest Volume: 192126300
+Volume Ratio to 10-day Average: 0.85x
+
+===== KEY INDICATORS =====
+EMA 9/21: 131.70 / 125.46 
+    → Bullish crossover
+    
+RSI: 81.34 
+    → Overbought
+    
+MACD: 6.3441, Signal: 5.6349 
+    → Bullish crossover
+    
+VWAP: 119.94 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-28T13:13:57.377652] SYMBOL: VST
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: VST
+
+===== PRICE DATA =====
+Latest Close: $162.59
+Daily Change: -0.78%
+Weekly Change: 6.92%
+
+===== VOLUME =====
+Latest Volume: 3244552
+Volume Ratio to 10-day Average: 0.64x
+
+===== KEY INDICATORS =====
+EMA 9/21: 156.84 / 148.34 
+    → Bullish crossover
+    
+RSI: 72.06 
+    → Overbought
+    
+MACD: 8.9394, Signal: 8.2215 
+    → Bullish crossover
+    
+VWAP: 140.51 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-28T13:21:05.536947] SYMBOL: SMCI
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: SMCI
+
+===== PRICE DATA =====
+Latest Close: $41.94
+Daily Change: 0.88%
+Weekly Change: 0.68%
+
+===== VOLUME =====
+Latest Volume: 22891916
+Volume Ratio to 10-day Average: 0.36x
+
+===== KEY INDICATORS =====
+EMA 9/21: 41.25 / 39.23 
+    → Bullish crossover
+    
+RSI: 69.19 
+    → Neutral
+    
+MACD: 2.0123, Signal: 1.7710 
+    → Bullish crossover
+    
+VWAP: 40.65 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-28T19:52:45.124057] SYMBOL: SMCI
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: SMCI
+
+===== PRICE DATA =====
+Latest Close: $41.96
+Daily Change: 0.94%
+Weekly Change: 0.74%
+
+===== VOLUME =====
+Latest Volume: 37655538
+Volume Ratio to 10-day Average: 0.58x
+
+===== KEY INDICATORS =====
+EMA 9/21: 41.25 / 39.23 
+    → Bullish crossover
+    
+RSI: 69.22 
+    → Neutral
+    
+MACD: 2.0143, Signal: 1.7714 
+    → Bullish crossover
+    
+VWAP: 40.65 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-29T16:57:59.472855] SYMBOL: SMCI
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: SMCI
+
+===== PRICE DATA =====
+Latest Close: $41.15
+Daily Change: -1.93%
+Weekly Change: -0.41%
+
+===== VOLUME =====
+Latest Volume: 35579028
+Volume Ratio to 10-day Average: 0.69x
+
+===== KEY INDICATORS =====
+EMA 9/21: 41.23 / 39.41 
+    → Bullish crossover
+    
+RSI: 68.01 
+    → Neutral
+    
+MACD: 1.8988, Signal: 1.7950 
+    → Bullish crossover
+    
+VWAP: 40.70 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-29T17:00:26.725471] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $298.17
+Daily Change: 0.02%
+Weekly Change: 0.51%
+
+===== VOLUME =====
+Latest Volume: 16191435
+Volume Ratio to 10-day Average: 0.37x
+
+===== KEY INDICATORS =====
+EMA 9/21: 305.99 / 341.49 
+    → Bearish crossover
+    
+RSI: 26.78 
+    → Oversold
+    
+MACD: -41.8193, Signal: -44.0607 
+    → Bullish crossover
+    
+VWAP: 390.46 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-29T17:01:04.270836] SYMBOL: DASH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: DASH
+
+===== PRICE DATA =====
+Latest Close: $204.58
+Daily Change: -0.97%
+Weekly Change: 1.85%
+
+===== VOLUME =====
+Latest Volume: 3009576
+Volume Ratio to 10-day Average: 0.66x
+
+===== KEY INDICATORS =====
+EMA 9/21: 203.07 / 198.22 
+    → Bullish crossover
+    
+RSI: 77.93 
+    → Overbought
+    
+MACD: 4.9927, Signal: 4.3975 
+    → Bullish crossover
+    
+VWAP: 188.95 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-29T17:02:14.962966] SYMBOL: NVDA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: NVDA
+
+===== PRICE DATA =====
+Latest Close: $139.19
+Daily Change: 3.25%
+Weekly Change: 4.79%
+
+===== VOLUME =====
+Latest Volume: 367415229
+Volume Ratio to 10-day Average: 1.58x
+
+===== KEY INDICATORS =====
+EMA 9/21: 133.70 / 127.48 
+    → Bullish crossover
+    
+RSI: 80.07 
+    → Overbought
+    
+MACD: 6.4627, Signal: 5.8963 
+    → Bullish crossover
+    
+VWAP: 120.26 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-30T11:24:20.443149] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $302.75
+Daily Change: 1.54%
+Weekly Change: 2.43%
+
+===== VOLUME =====
+Latest Volume: 7354937
+Volume Ratio to 10-day Average: 0.23x
+
+===== KEY INDICATORS =====
+EMA 9/21: 305.34 / 337.97 
+    → Bearish crossover
+    
+RSI: 29.27 
+    → Oversold
+    
+MACD: -39.6138, Signal: -43.1717 
+    → Bullish crossover
+    
+VWAP: 389.52 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-30T11:25:24.527623] SYMBOL: DASH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: DASH
+
+===== PRICE DATA =====
+Latest Close: $204.76
+Daily Change: 0.09%
+Weekly Change: -0.67%
+
+===== VOLUME =====
+Latest Volume: 792036
+Volume Ratio to 10-day Average: 0.19x
+
+===== KEY INDICATORS =====
+EMA 9/21: 203.41 / 198.81 
+    → Bullish crossover
+    
+RSI: 77.72 
+    → Overbought
+    
+MACD: 4.8647, Signal: 4.4909 
+    → Bullish crossover
+    
+VWAP: 189.03 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-30T11:26:06.043167] SYMBOL: TSLA
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: TSLA
+
+===== PRICE DATA =====
+Latest Close: $356.28
+Daily Change: -0.60%
+Weekly Change: 4.99%
+
+===== VOLUME =====
+Latest Volume: 47687992
+Volume Ratio to 10-day Average: 0.50x
+
+===== KEY INDICATORS =====
+EMA 9/21: 348.26 / 328.25 
+    → Bullish crossover
+    
+RSI: 73.86 
+    → Overbought
+    
+MACD: 21.3478, Signal: 20.0707 
+    → Bullish crossover
+    
+VWAP: 300.25 
+    → Price is Above VWAP (Bullish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-31T10:04:54.986792] SYMBOL: SMCI
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: SMCI
+
+===== PRICE DATA =====
+Latest Close: $40.02
+Daily Change: -2.75%
+Weekly Change: -0.17%
+
+===== VOLUME =====
+Latest Volume: 34788300
+Volume Ratio to 10-day Average: 0.75x
+
+===== KEY INDICATORS =====
+EMA 9/21: 40.99 / 39.46 
+    → Bullish crossover
+    
+RSI: 65.38 
+    → Neutral
+    
+MACD: 1.6963, Signal: 1.7734 
+    → Bearish crossover
+    
+VWAP: 40.74 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-31T15:22:09.054446] SYMBOL: AAPL
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: AAPL
+
+===== PRICE DATA =====
+Latest Close: $200.85
+Daily Change: 0.45%
+Weekly Change: 2.86%
+
+===== VOLUME =====
+Latest Volume: 70753100
+Volume Ratio to 10-day Average: 1.28x
+
+===== KEY INDICATORS =====
+EMA 9/21: 201.72 / 203.39 
+    → Bearish crossover
+    
+RSI: 53.32 
+    → Neutral
+    
+MACD: -1.6174, Signal: -1.0536 
+    → Bearish crossover
+    
+VWAP: 215.36 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.
+
+
+[2025-05-31T15:23:17.430847] SYMBOL: UNH
+
+You are 🤖 LLM Market Strategist (AI-powered market analysis synthesizer).
+
+📌 SYMBOL: UNH
+
+===== PRICE DATA =====
+Latest Close: $301.91
+Daily Change: 1.25%
+Weekly Change: 2.15%
+
+===== VOLUME =====
+Latest Volume: 16272600
+Volume Ratio to 10-day Average: 0.49x
+
+===== KEY INDICATORS =====
+EMA 9/21: 305.17 / 337.90 
+    → Bearish crossover
+    
+RSI: 28.95 
+    → Oversold
+    
+MACD: -39.6808, Signal: -43.1851 
+    → Bullish crossover
+    
+VWAP: 388.79 
+    → Price is Below VWAP (Bearish)
+
+===== DETECTED PATTERNS =====
+
+⚪ Double Pattern: ⚠️ No clear double pattern
+⚪ Triple Pattern: ⚠️ No triple pattern
+⚪ Head & Shoulders: ⚠️ No head & shoulders pattern
+⚪ Wedge Pattern: ⚠️ No clear wedge pattern
+⚪ Pennant Pattern: ⚠️ No clear pennant pattern
+⚪ Flag Pattern: ⚠️ No flag pattern detected
+⚪ Triangle Pattern: ⚠️ No clear triangle pattern
+
+Bullish patterns: 0, Bearish patterns: 0===== YOUR TASK =====
+Provide a concise market judgment with the following format:
+
+Judgment: [BULLISH/BEARISH/NEUTRAL]
+
+Explanation:
+
+1. Provide a brief but detailed explanation for your judgment based on the evidence.
+2. Consider the current price, indicators (EMA, RSI, MACD, VWAP), detected technical patterns, and volume.
+3. Weigh contradicting signals by their reliability and importance.
+4. Explain the most compelling evidence for your judgment.
+5. If there's uncertainty or conflicting signals, acknowledge it.
+6. DO NOT hedge your conclusion. Make a clear determination.
+
+Provide only this output and nothing else.

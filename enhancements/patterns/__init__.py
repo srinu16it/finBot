@@ -1,0 +1,1 @@
+"""Pattern enhancement modules for FinBot.""" 
