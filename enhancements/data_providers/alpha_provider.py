@@ -144,10 +144,13 @@ class AlphaVantageProvider:
         
         # Try cache first
         if use_cache:
-            cached_data = self.cache_manager.get(self.provider_name, symbol, params)
-            if cached_data:
-                logger.info(f"Cache hit for {symbol} daily data")
-                return pd.DataFrame(cached_data)
+            try:
+                cached_data = self.cache_manager.get(self.provider_name, symbol, params)
+                if cached_data:
+                    logger.info(f"Cache hit for {symbol} daily data")
+                    return pd.DataFrame(cached_data)
+            except Exception as e:
+                logger.warning(f"Cache error for {symbol}, falling back to API: {str(e)}")
         
         # Fetch from API
         logger.info(f"Fetching {symbol} daily data from AlphaVantage")
@@ -156,40 +159,48 @@ class AlphaVantageProvider:
         if not data or "Time Series (Daily)" not in data:
             return None
         
-        # Convert to DataFrame
-        df = pd.DataFrame.from_dict(data["Time Series (Daily)"], orient='index')
-        df.index = pd.to_datetime(df.index)
-        df = df.sort_index()
-        
-        # Rename columns to match standard naming
-        column_mapping = {
-            '1. open': 'Open',
-            '2. high': 'High',
-            '3. low': 'Low',
-            '4. close': 'Close',
-            '5. volume': 'Volume'
-        }
-        df = df.rename(columns=column_mapping)
-        
-        # Convert to numeric
-        for col in df.columns:
-            df[col] = pd.to_numeric(df[col])
-        
-        # Cache the data
-        if use_cache:
-            # Convert datetime index to string format before caching
-            df_cache = df.copy()
-            df_cache.index = df_cache.index.strftime('%Y-%m-%d %H:%M:%S')
-            cache_data = df_cache.reset_index().rename(columns={'index': 'Date'}).to_dict(orient='records')
-            self.cache_manager.set(
-                self.provider_name,
-                symbol,
-                cache_data,
-                params=params,
-                ttl=3600  # 1 hour TTL
-            )
-        
-        return df
+        try:
+            # Convert to DataFrame
+            df = pd.DataFrame.from_dict(data["Time Series (Daily)"], orient='index')
+            df.index = pd.to_datetime(df.index)
+            df = df.sort_index()
+            
+            # Rename columns to match standard naming
+            column_mapping = {
+                '1. open': 'Open',
+                '2. high': 'High',
+                '3. low': 'Low',
+                '4. close': 'Close',
+                '5. volume': 'Volume'
+            }
+            df = df.rename(columns=column_mapping)
+            
+            # Convert to numeric
+            for col in df.columns:
+                df[col] = pd.to_numeric(df[col])
+            
+            # Cache the data
+            if use_cache:
+                try:
+                    # Convert datetime index to string format before caching
+                    df_cache = df.copy()
+                    df_cache.index = df_cache.index.strftime('%Y-%m-%d %H:%M:%S')
+                    cache_data = df_cache.reset_index().rename(columns={'index': 'Date'}).to_dict(orient='records')
+                    self.cache_manager.set(
+                        self.provider_name,
+                        symbol,
+                        cache_data,
+                        params=params,
+                        ttl=3600  # 1 hour TTL
+                    )
+                except Exception as e:
+                    logger.warning(f"Failed to cache data for {symbol}: {str(e)}")
+            
+            return df
+            
+        except Exception as e:
+            logger.error(f"Error processing data for {symbol}: {str(e)}")
+            return None
     
     def get_intraday(self, symbol: str, interval: str = "5min",
                      outputsize: str = "compact", use_cache: bool = True) -> Optional[pd.DataFrame]:

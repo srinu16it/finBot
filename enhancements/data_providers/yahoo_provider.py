@@ -65,46 +65,57 @@ class YahooProvider:
         # Fetch from API
         try:
             logger.info(f"Fetching {symbol} OHLCV data from Yahoo Finance")
-            ticker = yf.Ticker(symbol)
             
-            # Add retry logic
+            # Add retry logic with exponential backoff
             max_retries = 3
             retry_delay = 2  # seconds
+            last_error = None
             
             for attempt in range(max_retries):
                 try:
+                    # Create a new Ticker instance for each attempt
+                    ticker = yf.Ticker(symbol)
+                    
+                    # Verify the ticker is valid
+                    if not ticker.info:
+                        raise ValueError(f"Invalid ticker symbol: {symbol}")
+                    
+                    # Get historical data
                     hist = ticker.history(period=period, interval=interval)
-                    break
+                    
+                    if hist is not None and not hist.empty:
+                        # Reset index to make date a column
+                        hist.reset_index(inplace=True)
+                        
+                        # Cache the data
+                        if use_cache:
+                            # Convert DataFrame to dict for caching
+                            cache_data = hist.to_dict(orient='records')
+                            # Adjust TTL based on interval
+                            ttl = self._get_ttl_for_interval(interval)
+                            self.cache_manager.set(
+                                self.provider_name, 
+                                symbol, 
+                                cache_data, 
+                                params=params,
+                                ttl=ttl
+                            )
+                        
+                        return hist
+                    else:
+                        raise ValueError(f"No data returned for {symbol}")
+                        
                 except Exception as e:
+                    last_error = e
                     if attempt < max_retries - 1:
-                        logger.warning(f"Attempt {attempt + 1} failed for {symbol}, retrying in {retry_delay}s...")
+                        logger.warning(f"Attempt {attempt + 1} failed for {symbol}, retrying in {retry_delay}s... Error: {str(e)}")
                         time.sleep(retry_delay)
                         retry_delay *= 2  # Exponential backoff
                     else:
-                        raise e
+                        logger.error(f"All {max_retries} attempts failed for {symbol}")
+                        raise last_error
             
-            if hist is None or hist.empty:
-                logger.warning(f"No data returned for {symbol}")
-                return None
-            
-            # Reset index to make date a column
-            hist.reset_index(inplace=True)
-            
-            # Cache the data
-            if use_cache:
-                # Convert DataFrame to dict for caching
-                cache_data = hist.to_dict(orient='records')
-                # Adjust TTL based on interval
-                ttl = self._get_ttl_for_interval(interval)
-                self.cache_manager.set(
-                    self.provider_name, 
-                    symbol, 
-                    cache_data, 
-                    params=params,
-                    ttl=ttl
-                )
-            
-            return hist
+            return None
             
         except Exception as e:
             logger.error(f"Failed to get ticker '{symbol}' reason: {str(e)}")
