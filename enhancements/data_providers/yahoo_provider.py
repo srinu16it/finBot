@@ -110,7 +110,11 @@ class YahooProvider:
                         # Cache the data
                         if use_cache:
                             # Convert DataFrame to dict for caching
-                            cache_data = hist.to_dict(orient='records')
+                            cache_df = hist.copy()
+                            # Convert Date column to string if it's datetime
+                            if 'Date' in cache_df.columns and pd.api.types.is_datetime64_any_dtype(cache_df['Date']):
+                                cache_df['Date'] = cache_df['Date'].dt.strftime('%Y-%m-%d %H:%M:%S')
+                            cache_data = cache_df.to_dict(orient='records')
                             # Adjust TTL based on interval
                             ttl = self._get_ttl_for_interval(interval)
                             self.cache_manager.set(
@@ -470,7 +474,11 @@ class YahooProvider:
             
             # Cache the data
             if use_cache and not hist_4h.empty:
-                cache_data = hist_4h.to_dict(orient='records')
+                cache_df = hist_4h.copy()
+                # Convert Date column to string if it's datetime
+                if 'Date' in cache_df.columns and pd.api.types.is_datetime64_any_dtype(cache_df['Date']):
+                    cache_df['Date'] = cache_df['Date'].dt.strftime('%Y-%m-%d %H:%M:%S')
+                cache_data = cache_df.to_dict(orient='records')
                 self.cache_manager.set(
                     self.provider_name,
                     symbol,

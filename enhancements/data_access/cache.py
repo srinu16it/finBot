@@ -132,7 +132,7 @@ class CacheManager:
         # Create cache table if not exists
         self.conn.execute("""
             CREATE TABLE IF NOT EXISTS cache (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id INTEGER PRIMARY KEY,
                 provider VARCHAR NOT NULL,
                 symbol VARCHAR NOT NULL,
                 params_hash VARCHAR NOT NULL,
@@ -142,6 +142,12 @@ class CacheManager:
                 access_count INTEGER DEFAULT 0,
                 last_accessed TIMESTAMP
             )
+        """)
+        
+        # Create unique index for cache lookup
+        self.conn.execute("""
+            CREATE UNIQUE INDEX IF NOT EXISTS idx_cache_unique 
+            ON cache(params_hash)
         """)
         
         # Create index for faster lookups
@@ -260,20 +266,39 @@ class CacheManager:
         created_at = datetime.now()
         expires_at = created_at + timedelta(seconds=ttl)
         
-        self.conn.execute("""
-            INSERT OR REPLACE INTO cache 
-            (provider, symbol, params_hash, data, created_at, expires_at, access_count, last_accessed)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        # First try to update existing entry
+        result = self.conn.execute("""
+            UPDATE cache 
+            SET data = ?, expires_at = ?, last_accessed = ?, access_count = access_count + 1
+            WHERE params_hash = ?
+            RETURNING id
         """, [
-            provider,
-            symbol,
-            cache_key,
             json.dumps(data),
-            created_at,
             expires_at,
-            0,
-            created_at
-        ])
+            created_at,
+            cache_key
+        ]).fetchone()
+        
+        # If no existing entry, insert new one
+        if not result:
+            # Get next id
+            next_id = self.conn.execute("SELECT COALESCE(MAX(id), 0) + 1 FROM cache").fetchone()[0]
+            
+            self.conn.execute("""
+                INSERT INTO cache 
+                (id, provider, symbol, params_hash, data, created_at, expires_at, access_count, last_accessed)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, [
+                next_id,
+                provider,
+                symbol,
+                cache_key,
+                json.dumps(data),
+                created_at,
+                expires_at,
+                0,
+                created_at
+            ])
         
         self.conn.commit()
     
