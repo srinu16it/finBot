@@ -177,7 +177,10 @@ class AlphaVantageProvider:
         
         # Cache the data
         if use_cache:
-            cache_data = df.reset_index().rename(columns={'index': 'Date'}).to_dict(orient='records')
+            # Convert datetime index to string format before caching
+            df_cache = df.copy()
+            df_cache.index = df_cache.index.strftime('%Y-%m-%d %H:%M:%S')
+            cache_data = df_cache.reset_index().rename(columns={'index': 'Date'}).to_dict(orient='records')
             self.cache_manager.set(
                 self.provider_name,
                 symbol,

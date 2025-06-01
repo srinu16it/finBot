@@ -10,6 +10,7 @@ import pandas as pd
 from typing import Optional, Dict, Any
 from datetime import datetime
 import logging
+import time
 
 from enhancements.data_access.cache import CacheManager
 
@@ -65,9 +66,24 @@ class YahooProvider:
         try:
             logger.info(f"Fetching {symbol} OHLCV data from Yahoo Finance")
             ticker = yf.Ticker(symbol)
-            hist = ticker.history(period=period, interval=interval)
             
-            if hist.empty:
+            # Add retry logic
+            max_retries = 3
+            retry_delay = 2  # seconds
+            
+            for attempt in range(max_retries):
+                try:
+                    hist = ticker.history(period=period, interval=interval)
+                    break
+                except Exception as e:
+                    if attempt < max_retries - 1:
+                        logger.warning(f"Attempt {attempt + 1} failed for {symbol}, retrying in {retry_delay}s...")
+                        time.sleep(retry_delay)
+                        retry_delay *= 2  # Exponential backoff
+                    else:
+                        raise e
+            
+            if hist is None or hist.empty:
                 logger.warning(f"No data returned for {symbol}")
                 return None
             
@@ -91,7 +107,7 @@ class YahooProvider:
             return hist
             
         except Exception as e:
-            logger.error(f"Error fetching data for {symbol}: {str(e)}")
+            logger.error(f"Failed to get ticker '{symbol}' reason: {str(e)}")
             return None
     
     def get_info(self, symbol: str, use_cache: bool = True) -> Optional[Dict[str, Any]]:
