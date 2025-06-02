@@ -642,6 +642,18 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
     options_engine = OptionsRecommendationEngine()
     candlestick_detector = CandlestickPatternDetector()
     
+    # Check if running on EC2 and adjust provider preference
+    try:
+        from enhancements.data_providers.yahoo_provider import is_running_on_ec2
+        is_ec2 = is_running_on_ec2()
+    except:
+        is_ec2 = False
+    
+    # If on EC2 and AlphaVantage is available, prefer it
+    if is_ec2 and "ALPHAVANTAGE_API_KEY" in os.environ:
+        logger.info("Running on EC2 - preferring AlphaVantage over Yahoo Finance")
+        use_alphavantage = True
+    
     # Fetch data - always get 6 months for proper weekly analysis
     if use_alphavantage and "ALPHAVANTAGE_API_KEY" in os.environ:
         logger.info("Using AlphaVantage data provider")
@@ -686,10 +698,32 @@ def run_enhanced_analysis(symbol: str, use_alphavantage: bool = True, timeframe:
             yahoo_period = min_period
             
         logger.info(f"Fetching {yahoo_period} of data for {period_days} day analysis")
-        df = provider.get_ohlcv(symbol, period=yahoo_period, interval="1d")
         
-        if df is not None and 'Date' in df.columns:
-            df.set_index('Date', inplace=True)
+        try:
+            df = provider.get_ohlcv(symbol, period=yahoo_period, interval="1d")
+            
+            if df is not None and 'Date' in df.columns:
+                df.set_index('Date', inplace=True)
+        except Exception as e:
+            error_msg = str(e)
+            # If Yahoo fails with rate limiting on EC2, automatically try AlphaVantage
+            if ("429" in error_msg or "Too Many Requests" in error_msg) and "ALPHAVANTAGE_API_KEY" in os.environ:
+                logger.warning("Yahoo Finance blocked on EC2, falling back to AlphaVantage")
+                try:
+                    provider = AlphaVantageProvider(cache_manager)
+                    df = provider.get_daily(symbol, outputsize="full")
+                    if df is not None:
+                        # Sort to ensure newest data is last
+                        df = df.sort_index()
+                        # Use tail to get the MOST RECENT data
+                        df = df.tail(max(period_days, 180))
+                    use_alphavantage = True  # Update flag for consistency
+                except Exception as av_error:
+                    logger.error(f"Both Yahoo and AlphaVantage failed: {av_error}")
+                    df = None
+            else:
+                logger.error(f"Yahoo Finance error: {e}")
+                df = None
     
     if df is None or df.empty:
         logger.error(f"Failed to fetch data for {symbol}")

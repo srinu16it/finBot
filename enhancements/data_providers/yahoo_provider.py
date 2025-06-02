@@ -12,11 +12,30 @@ from datetime import datetime
 import logging
 import time
 from threading import Lock
+import requests
+import platform
 
 from enhancements.data_access.cache import CacheManager
 
+# Try to import config, use defaults if not available
+try:
+    from enhancements.config import Config
+except ImportError:
+    class Config:
+        YAHOO_LOCAL_RATE_LIMIT = 2.0
+        YAHOO_EC2_RATE_LIMIT = 5.0
 
 logger = logging.getLogger(__name__)
+
+
+def is_running_on_ec2():
+    """Check if running on AWS EC2 instance."""
+    try:
+        # Try to access EC2 metadata endpoint
+        response = requests.get('http://169.254.169.254/latest/meta-data/', timeout=0.5)
+        return response.status_code == 200
+    except:
+        return False
 
 
 class YahooProvider:
@@ -32,7 +51,13 @@ class YahooProvider:
     # Rate limiting for Yahoo Finance
     _last_request_time = 0
     _rate_limit_lock = Lock()
-    MIN_REQUEST_INTERVAL = 2.0  # Minimum seconds between requests
+    
+    # Different rate limits for EC2 vs local
+    MIN_REQUEST_INTERVAL_LOCAL = Config.YAHOO_LOCAL_RATE_LIMIT
+    MIN_REQUEST_INTERVAL_EC2 = Config.YAHOO_EC2_RATE_LIMIT
+    
+    # Check if running on EC2
+    IS_EC2 = is_running_on_ec2()
     
     def __init__(self, cache_manager: Optional[CacheManager] = None):
         """
@@ -44,6 +69,21 @@ class YahooProvider:
         """
         self.cache_manager = cache_manager or CacheManager()
         self.provider_name = "yahoo_finance"
+        
+        # Set rate limit based on environment
+        self.min_request_interval = (
+            self.MIN_REQUEST_INTERVAL_EC2 if self.IS_EC2 
+            else self.MIN_REQUEST_INTERVAL_LOCAL
+        )
+        
+        if self.IS_EC2:
+            logger.info("Running on EC2 - using extended rate limiting for Yahoo Finance")
+            
+            # Set custom headers for EC2
+            import yfinance.utils as yf_utils
+            yf_utils._requests_session().headers.update({
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            })
     
     def _rate_limit(self):
         """Enforce rate limiting to avoid 429 errors."""
@@ -51,8 +91,8 @@ class YahooProvider:
             current_time = time.time()
             time_since_last_request = current_time - YahooProvider._last_request_time
             
-            if time_since_last_request < self.MIN_REQUEST_INTERVAL:
-                sleep_time = self.MIN_REQUEST_INTERVAL - time_since_last_request
+            if time_since_last_request < self.min_request_interval:
+                sleep_time = self.min_request_interval - time_since_last_request
                 logger.debug(f"Rate limiting: sleeping for {sleep_time:.2f}s")
                 time.sleep(sleep_time)
             
@@ -131,12 +171,28 @@ class YahooProvider:
                         
                 except Exception as e:
                     last_error = e
+                    error_msg = str(e)
+                    
+                    # Check if it's a 429 error
+                    is_rate_limit_error = "429" in error_msg or "Too Many Requests" in error_msg
+                    
                     if attempt < max_retries - 1:
-                        logger.warning(f"Attempt {attempt + 1} failed for {symbol}, retrying in {retry_delay}s... Error: {str(e)}")
+                        # Use longer delays for rate limit errors on EC2
+                        if is_rate_limit_error and self.IS_EC2:
+                            retry_delay = 10 * (attempt + 1)  # 10s, 20s, 30s for EC2
+                            logger.warning(f"Rate limit hit on EC2 for {symbol}, waiting {retry_delay}s...")
+                        else:
+                            retry_delay = retry_delay * 2  # Normal exponential backoff
+                            
+                        logger.warning(f"Attempt {attempt + 1} failed for {symbol}, retrying in {retry_delay}s... Error: {error_msg}")
                         time.sleep(retry_delay)
-                        retry_delay *= 2  # Exponential backoff
                     else:
                         logger.error(f"All {max_retries} attempts failed for {symbol}")
+                        
+                        # If on EC2 and getting rate limited, suggest using AlphaVantage
+                        if is_rate_limit_error and self.IS_EC2:
+                            logger.error("Yahoo Finance is blocking EC2 requests. Please use AlphaVantage as the data provider.")
+                        
                         raise last_error
             
             return None
